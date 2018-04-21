@@ -31,3 +31,27 @@ exports.signupUser = function(req, res) {
       }
     });
 };
+
+exports.signinUserForm = function(req, res) {
+  res.render('signin');
+};
+
+exports.signinUser = function(req, res) {
+  var username = req.body.username;
+  var password = req.body.password;
+
+  User.findOne({ username: username })
+    .exec(function(err, user) {
+      if (!user) {
+        res.redirect('/signin');
+      } else {
+        User.comparePassword(password, user.password, function(err, match) {
+          if (match) {
+            util.createSession(req, res, user);
+          } else {
+            res.redirect('/signin');
+          }
+        });
+      }
+    });
+};
