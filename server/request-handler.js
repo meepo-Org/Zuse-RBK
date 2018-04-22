@@ -75,30 +75,7 @@ exports.signupUser = function(req, res) {
 // };
 
 
-exports.signinUser = function(req, res) {
-  var userName = req.body['states[userName]'];
-  var passWord = req.body['states[passWord]'];
- db.User.findOne({ userName: userName },function(err,user){
-   if (!user ){
-        console.log("user not exist")
-      } else {
-        var data;
-        db.User.comparePassword(passWord,user.passWord, function(err,match) {
-          if (match) {
-            data="coreeeeect";
-            //util.createSession(req, res, db.User);
-            console.log("coreeeeect");
-          } else {
-            console.log("innnnncoreeeeect");
-            data="";
-          }
-        });
-        res.status(201).send(data)
-      }
-    });
-};
 
-<<<<<<< HEAD
 exports.signinUserForm = function(req, res) {
   res.render('signin');
 };
@@ -122,6 +99,4 @@ exports.signinUser = function(req, res) {
       }
     });
 };
-=======
 
->>>>>>> second commit
