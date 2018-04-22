@@ -15,59 +15,60 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
-app.post('/user', function (req, res) {
- //console.log(req.body['states[userName]'])
- user.User.findOne({userName:req.body['states[userName]']},function(err,found){
+// app.post('/user', function (req, res) {
+//  //console.log(req.body['states[userName]'])
+//  user.User.findOne({userName:req.body['states[userName]']},function(err,found){
    
-   if (!found || found["passWord"]== req.body['states[passWord]']){
-     var obj = new user.User({
-          userName: req.body['states[userName]'],
-          passWord: req.body['states[passWord]']
-       });
-       obj.save(function(err,obj) {
-         if(err){
-            res.status(500).send(err);
-         }
-         else{res.status(201).send("Thank You");}
-       })
-   }
-   else{res.status(201).send("Incorrect password or taken userName")}
- })
+//    if (!found || found["passWord"]== req.body['states[passWord]']){
+//      var obj = new user.User({
+//           userName: req.body['states[userName]'],
+//           passWord: req.body['states[passWord]']
+//        });
+//        obj.save(function(err,obj) {
+//          if(err){
+//             res.status(500).send(err);
+//          }
+//          else{res.status(201).send("Thank You");}
+//        })
+//    }
+//    else{res.status(201).send("Incorrect password or taken userName")}
+//  })
               
  
-})
+// })
 
-app.get('/user', function (req, res) {
- //console.log("here")
- user.selectAll(function(err, data) {
-   //console.log(data)
-   if(err) {
-    // console.log("sth")
-     res.sendStatus(500);
-   } else {
-       var arr=[];
-       for (var i=0;i<data.length;i++){
-        arr.push({userName:data[i]["userName"]})
-       }
-       arr.sort(function(a, b) {
-         var nameA = a.userName.toUpperCase();
-         var nameB = b.userName.toUpperCase();
-         if (nameA < nameB) {
-         return -1;
-         }
-         if (nameA > nameB) {
-         return 1;
-         }
-         return 0;
-         });
+// app.get('/user', function (req, res) {
+//  //console.log("here")
+//  user.selectAll(function(err, data) {
+//    //console.log(data)
+//    if(err) {
+//     // console.log("sth")
+//      res.sendStatus(500);
+//    } else {
+//        var arr=[];
+//        for (var i=0;i<data.length;i++){
+//         arr.push({userName:data[i]["userName"]})
+//        }
+//        arr.sort(function(a, b) {
+//          var nameA = a.userName.toUpperCase();
+//          var nameB = b.userName.toUpperCase();
+//          if (nameA < nameB) {
+//          return -1;
+//          }
+//          if (nameA > nameB) {
+//          return 1;
+//          }
+//          return 0;
+//          });
      
-     res.send(arr);
-   }
- });
-});
-app.get('/signup', handler.signupUserForm);
-app.post('/signup', handler.signupUser);
-
+//      res.send(arr);
+//    }
+//  });
+// });
+ // app.get('/Signup', handler.signupUserForm);
+app.post('/Signup', handler.signupUser);
+ // app.get('/Login', handler.signinUserForm);
+app.post('/Login', handler.signinUser);
 
 app.get('/', function (req, res) {
    res.send("");

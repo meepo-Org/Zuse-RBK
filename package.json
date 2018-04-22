@@ -18,15 +18,18 @@
     "webpack-cli": "^2.0.14"
   },
   "dependencies": {
-    "cookie-parser": "^1.4.1",
+    "bcrypt": "^2.0.1",
     "bcrypt-nodejs": "0.0.3",
     "bluebird": "^3.3.4",
     "body-parser": "^1.17.2",
+    "cookie-parser": "^1.4.1",
     "express": "^4.15.0",
     "express-session": "^1.15.6",
     "jquery": "^3.1.1",
     "mongoose": "^4.8.6",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2"
   }
 }

@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var bcrypt = require('bcrypt-nodejs');
+var bcrypt = require('bcrypt');
 var Promise = require('bluebird');
 
 mongoose.connect('mongodb://localhost/ReduceRuse');
@@ -15,13 +15,27 @@ db.once('open', function() {
 });
 
 var user = mongoose.Schema({
-  userName: String,
-  passWord: String
-
+  userName: { type : String, required : true },
+  passWord: { type : String, required : true },
+  Email:{ type : String, required : true }
 });
 
 
 var User = mongoose.model('User', user);
+
+//this schema is for account
+
+var account = mongoose.Schema({
+  userName: { type : String, required : true },
+  imageurl: { type : String, required : true },
+  description:{ type : String, required : true }
+});
+
+
+var account = mongoose.model('account', user);
+
+
+
 
 var selectAll = function(callback) {
   User.find({}, function(err, user) {
@@ -32,24 +46,27 @@ var selectAll = function(callback) {
     }
   });
 };
-User.comparePassword = function(attemptedPassword, callback) {
-    bcrypt.compare(attemptedPassword, this.passWord, function(err, isMatch) {
+
+
+User.comparePassword = function(attemptedPassword,savedPassword,callback) {
+    bcrypt.compare(attemptedPassword, savedPassword, function(err, isMatch) {
       if(err){
         callback(err)
       }else{
-            callback(null,isMatch);}
+        callback(null,isMatch);}
 
     });
   }
 
-user.pre('save',function(next) {
-    var cipher = Promise.promisify(bcrypt.hash);
-    return cipher(this.passWord, null, null).bind(this)
-      .then(function(hash) {
-        this.passWord = hash;
-        next();
-      });
-  })
+// user.pre('save',function(next) {
+//     var cipher = Promise.promisify(bcrypt.hash);
+//     return cipher(this.passWord, null, null).bind(this)
+//       .then(function(hash) {
+//         this.passWord = hash;
+//         next();
+//       });
+//   })
+
 var deleteAll=function(callback){
   User.remove({},function(err,data){
     if(err){
@@ -78,4 +95,4 @@ module.exports.User = User;
 module.exports.selectAll = selectAll;
 module.exports.deleteAll = deleteAll;
 module.exports.updateValue = updateValue;
-
+module.exports.account = account;
