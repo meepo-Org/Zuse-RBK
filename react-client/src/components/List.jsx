@@ -1,10 +1,17 @@
 import React from 'react';
-import ListItem from './ListItem.jsx';
 
 const List = (props) => (
   <div>
-    There are { props.items.length } items.
-    { props.items.map(item => <ListItem item={item}/>)}
+    <h4 > Signup/Login for donating/selling the product or 
+    <br/>sharing your Do It Yourself experiance with us! </h4>
+   
+    {props.items.map(item => 
+    		              <div>    
+    		               <h1>Username:</h1><h3>{item.username}</h3>
+                       <img src="{item.image}" />
+                       <h1>Description:</h1><h3>{item.Description}</h3>
+    		              </div>
+    )}
   </div>
 )
 

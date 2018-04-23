@@ -1,36 +1,80 @@
 var crypto = require('crypto');
-var bcrypt = require('bcrypt-nodejs');
-var User=require('../database-mongo/index.js');
+var bcrypt = require('bcrypt');
+var db=require('../database-mongo/index.js');
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var util=require('./utility.js')
 exports.signupUserForm = function(req, res) {
-  res.render('signup');
+  res.send('Signup');
 };
 
 exports.signupUser = function(req, res) {
-  var username = req.body.username;
-  var password = req.body.password;
+  var userName = req.body['states[userName]'];
+  var passWord = req.body['states[passWord]'];
+  var Email = req.body['states[Email]'];
+  //console.log(req.body['states[userName]'],'in')
 
-  new User({ username: username })
-    .fetch()
-    .then(function(user) {
-      if (!user) {
-        var newUser = new User({
-          username: username,
-          password: password
-        });
-        newUser.save()
-          .then(function(newUser) {
-            Users.add(newUser);
-            util.createSession(req, res, newUser);
-          });
-      } else {
-        console.log('Account already exists');
-        res.redirect('/signup');
-      }
-    });
-};
+   db.User.findOne({ Email: Email },function(err,found){
+   
+   if (!found ){
+     var newUser = new db.User({
+          userName: userName,
+          passWord: passWord,
+          Email: Email
+
+       });
+       bcrypt.hash(passWord, 10, function(err, hash) {
+        newUser.passWord=hash;
+        newUser.save(function(err,obj) {
+         if(err){
+            res.status(500).send(err);
+         }
+         else{
+          res.status(201).send("Thank You");
+          console.log('Im in ')
+        }
+       })
+      });
+       // newUser.save(function(err,obj) {
+       //   if(err){
+       //      res.status(500).send(err);
+       //   }
+       //   else{
+       //    res.status(201).send("Thank You");
+       //    console.log('Im in ')
+       //  }
+       // })
+   }
+   else{
+    res.status(201).send("")
+  }
+ })
+}
+    // .fetch()
+    // .then(function(user) {
+    //   if (!user) {
+    //     var newUser = new db.User({
+    //       username: username,
+    //       password: password
+    //     });
+    //     newUser.save() 
+    //       .then(function(newUser) {
+    //         Users.add(newUser);
+    //         util.createSession(req, res, newUser);
+    //       });
+    //   } else {
+    //     console.log('Account already exists');
+    //     res.redirect('/Signup');
+    //   }
+    // });
+
+
+
+// exports.signinUserForm = function(req, res) {
+//   res.render('signin');
+// };
+
+
 
 exports.signinUserForm = function(req, res) {
   res.render('signin');
@@ -55,3 +99,4 @@ exports.signinUser = function(req, res) {
       }
     });
 };
+
