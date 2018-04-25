@@ -1,23 +1,28 @@
-var crypto = require('crypto');
+var request = require('request');
 var bcrypt = require('bcrypt');
-var db=require('../database-mongo/index.js');
+var db=require('../database-mongo/config.js');
+var User=require('../database-mongo/index.js');
+var Profile=require('../database-mongo/profile.js');
+var Suggest=require('../database-mongo/suggest.js');
+var Message=require('../database-mongo/message.js');
+
 var bodyParser = require('body-parser');
 var cookieParser = require('cookie-parser');
 var util=require('./utility.js')
-exports.signupUserForm = function(req, res) {
-  res.send('Signup');
-};
+// exports.signupUserForm = function(req, res) {
+//   res.send('Signup');
+// };
 
 exports.signupUser = function(req, res) {
   var userName = req.body['states[userName]'];
   var passWord = req.body['states[passWord]'];
   var Email = req.body['states[Email]'];
-  //console.log(req.body['states[userName]'],'in')
+  console.log(User,"useeeer")
 
-   db.User.findOne({ Email: Email },function(err,found){
+   User.findOne({ Email: Email },function(err,found){
    
    if (!found ){
-     var newUser = new db.User({
+     var newUser = new User({
           userName: userName,
           passWord: passWord,
           Email: Email
@@ -28,6 +33,7 @@ exports.signupUser = function(req, res) {
         newUser.save(function(err,obj) {
          if(err){
             res.status(500).send(err);
+            console.log("errorrr")
          }
          else{
           res.status(201).send("Thank You");
@@ -75,28 +81,163 @@ exports.signupUser = function(req, res) {
 // };
 
 
-
-exports.signinUserForm = function(req, res) {
-  res.render('signin');
-};
-
 exports.signinUser = function(req, res) {
-  var username = req.body.username;
-  var password = req.body.password;
-
-  User.findOne({ username: username })
-    .exec(function(err, user) {
-      if (!user) {
-        res.redirect('/signin');
+  var userName = req.body['states[userName]'];
+  var passWord = req.body['states[passWord]'];
+ User.findOne({ userName: userName },function(err,user){
+   if (!user ){
+        console.log("user not exist")
       } else {
-        User.comparePassword(password, user.password, function(err, match) {
+        var data="kk";
+        User.comparePassword(passWord,user.passWord, function(err,match) {
           if (match) {
-            util.createSession(req, res, user);
+            data="coreeeeect";
+            res.status(201).send(data);
+            //util.createSession(req, res, db.User);
+            console.log("coreeeeect");
           } else {
-            res.redirect('/signin');
+            console.log("innnnncoreeeeect");
+            data="";
+             res.status(201).send(data);
           }
         });
+        //res.status(201).send(data)
       }
     });
 };
+
+
+exports.Profilesave = function(req, res) {
+  var name=req.body.name;
+  var select=req.body.select;
+  var post=req.body.post;
+  var newprofile = new Profile({
+          name: name,
+          select: select,
+          post:post
+        });
+
+ newprofile.save(function(err,data) {
+           if(err){
+       res.status(500).send(err);
+         }
+
+         else{
+        res.status(201).send("its saved");
+          console.log('saved')
+        }
+ })
+}
+
+
+exports.addSuggest= function(req, res) {
+  var name=req.body.name;
+  var type=req.body.type;
+  var content=req.body.content;
+  var newSuggestion = new Suggest({
+          name: name,
+          type: type,
+          content:content
+        });
+
+ newSuggestion.save(function(err,data) {
+           if(err){
+       res.status(500).send(err);
+         }
+
+         else{
+        res.status(201).send("suggection saved");
+          console.log('saved')
+        }
+ })
+}
+
+exports.showSuggest= function(req, res) {
+  Suggest.find({ type:req.body.type},function(err,data){
+
+           if(err){
+       res.status(500).send(err);
+         }
+
+         else{
+        res.status(201).send(data);
+          console.log('suggetion as req')
+        }
+ })
+}
+
+exports.home= function(req, res) {
+  Profile.find({},function(err,data){
+
+           if(err){
+       res.status(500).send(err);
+         }
+
+         else{
+        res.status(201).send(data);
+          console.log('extra')
+        }
+ })
+}
+exports.message=function(req,res){
+ console.log(req.body.name,'test')
+  Message.find({to:req.body.name},function(err,data){
+    if(err){
+           res.status(500).send(err);
+             }
+
+             else{
+            res.status(201).send(data);
+              console.log('message retrieved')
+            }
+  })
+}
+
+exports.sendMessage=function(req,res){
+  console.log(req.body.From)
+  console.log(req.body.to)
+  console.log(req.body.content)
+  var From=req.body.From;
+  var to=req.body.to;
+  var content=req.body.content;
+  var newMessage=new Message(
+   {From:From,
+       to:to,
+       content:content}
+    )
+  newMessage.save(function(err,data){
+    if(err){
+      res.status(500).send(err);
+      console.log("there was an error")
+    }else{
+      res.status(201).send(data);
+          console.log('message sent successfully ')
+    }
+  })
+
+}
+
+exports.logout = function(req, res) {
+    res.send("logout");
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -8,92 +8,77 @@ import {
   browserHistory,
   BrowserRouter as Router
 } from "react-router-dom";
-import Login from './Login.jsx';
-import Signup from './Signup.jsx';
-
+import Home from './Home.jsx';
+import Profile from './Profile.jsx';
+//import Message from './Message.jsx';
 
 class Account extends Component {
-
   constructor(props) {
-   super(props);
-   this.state = {
-     states:{
-       post:""
-     },
-     data:""
-   };
-   this.onChange = this.onChange.bind(this);
-   this.submit = this.submit.bind(this);
- }
-
- onChange (e) {
-  var states = this.state.states;
-  var name = e.target.name;
-  var value = e.target.value;
-  states[name] = value;
-  this.setState({states});
- }
-
- submit() {
-   $.ajax({
-     url: '/Login',
-     type: 'POST',
-     data: this.state,
-     success: (data) => {
-      if(this.state.data!==""){
-       history.pushState({},'','/Account')
-       window.location.reload()
-        }
-        else{history.pushState({},'','/Account')}
-        //window.location.reload()
-         this.setState({data:data});
-         alert(data)
-         console.log(data)
-     }
-   });
- }
+    super(props);
+    this.state = {
+      extra:[]
+     };
+     this.submit = this.submit.bind(this);
+    this.Logout = this.Logout.bind(this);
+   }
 
 
-render(){
-  
+  submit() {
+    //console.log(select,post,this.props.name);
+    $.ajax({ 
+      type:'GET',
+      url: '/Home',
+      success: (data) => {
+        this.setState({extra:data})
+      },
+    });
+  }
+  Logout() {
+    //console.log(select,post,this.props.name);
+    $.ajax({ 
+      type:'GET',
+      url: '/Logout',
+      success: (data) => {
+       window.location.href="index.html"
+      },
+    });
+  }
 
-
-   return (
-
-   	 <Router>
-     <center>
-      <div>
-
+  render(){
+   
+    return (
+      
+    <Router>
      
+      <div>
+     
+      <div id='line'>
+           <Link onClick={this.submit} to="/Home" style={{color: 'black',paddingLeft: 13,textDecoration: 'none'}}>Home</Link>
+           <Link to="/Profile" style={{color: 'black',paddingLeft: 13,textDecoration: 'none'}}>Profile</Link>
+          
+          <Link to="/Login" onClick={this.Logout} style={{color: 'black',paddingLeft: 13,textDecoration: 'none'}}>Logout</Link>
+          </div>
 
           <div className="content">
             
-            <Route path="/Login" component={Login}/>
-            <Route path="/Signup" component={Signup}/>
+            <Route path="/Home" render={()=><Home extraa={this.state.extra} name={this.props.name}/> } />
+            <Route path="/Profile" render={()=><Profile name={this.props.name}/> } />
+           
           </div>
 
-       <h1>User</h1>
-       <select>
-  <option value="select">select</option>
-  <option value="plastic">plastic</option>
-  <option value="clothes">clothes</option>
-  <option value="wood">wood</option>
-  <option value="iron">iron</option>
-       </select>
-  <br/><br/><br/>
-  <textarea name="post" placeholder="post" value={this.state.post} onChange={this.onChange} rows="4" cols="50">
-  </textarea>
-       <br/><br/><br/>
-  <button onClick={this.submit}>post</button><br/>
+      
+      
+       
  
       </div>
 
-     </center>
+      
      </Router>
-   )
- }
-  
-}
+     )
 
- 
+  }
+}
+   	 
+   
+
 export default Account;

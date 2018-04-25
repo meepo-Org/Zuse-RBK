@@ -8,16 +8,16 @@ import {
   browserHistory,
   BrowserRouter as Router
 } from "react-router-dom";
-import List from './List.jsx';
+import SuggestionList from './SuggestionList.jsx';
 import Signup from './Signup.jsx';
 import Login from './Login.jsx';
-import Account from './Account.jsx';
+
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = { 
-      items: [],
+      suggestions: [],
       type:'',
       dataa:""
     };
@@ -35,25 +35,17 @@ class App extends Component {
   submit(type) {
     $.ajax({ 
       type:'POST',
-      url: '/items',
+      url: '/suggestions',
       data:{
         type:type,
-        
       },
-      success: (data) => {
-        console.log(data)
-      },
-    });
-
-    $.ajax({
-      type:'GET',
-      url: '/items', 
       success: (data) => {
         this.setState({
-          items:data
+          suggestions:data
         })
       }
     });
+
   }
 
   showSignup() {
@@ -65,24 +57,33 @@ class App extends Component {
   render() {
     if(this.state.dataa==""){
      return (
-        <center>
+      
         <div>
         <Router history={browserHistory}>
-            <div>
-             <Link id='Link1' style={{color: 'black',paddingLeft: 13,textDecoration: 'none'}} onClick={this.showSignup} to="/Signup">Signup</Link>
-             <Link onClick={this.showSignup} to="/Login" style={{color: 'black',paddingLeft: 13,textDecoration: 'none'}}>Login</Link>
-             <Link onClick={this.showSignup} to="/Account" style={{color: 'black',paddingLeft: 13,textDecoration: 'none'}}>user</Link>
+            <div id='Signin'>
+             <Link id='Link1' style={{color: 'black',paddingLeft: 13,textDecoration: 'none'}}  onClick={this.showSignup} to="/Signup">Signup</Link>
+             <Link id='Link2'onClick={this.showSignup} to="/Login" style={{color: 'black',paddingLeft: 13,textDecoration: 'none'}}>Login</Link>
+            
              </div>
            </Router>
-          <h1 id='h1'>Recycling</h1>
-          <input name='type' onChange={this.onChange} placeholder="What to recycle?"/>
+             <center>
+          <h1 id='h1'>Reduce.Reuse.Recycle</h1>
+          <select id='select' onChange={this.onChange} value={this.state.type} name="type">
+          <option value="type">type</option>
+          <option value="plastic">plastic</option>
+          <option value="clothes">clothes</option>
+          <option value="wood">wood</option>
+          <option value="iron">iron</option>
+          </select>
+  
           <br></br>
           <br></br>
-          <button  style={{width: 70 }} onClick={()=> this.submit(this.state.type)}>Submit </button>
-          <List items={this.state.items}/>
+          <button id='submit' style={{width: 70 }} onClick={()=> this.submit(this.state.type)}>Show suggestions</button>
+          <SuggestionList suggestions={this.state.suggestions}/>
             
-        </div>
+        
         </center>
+        </div>
      );
     }
 
@@ -93,7 +94,6 @@ class App extends Component {
          
           <Route path="/Signup" component={Signup}/>
           <Route path="/Login" component={Login}/>
-           <Route path="/Account" component={Account}/>
            
        </Switch>
        </Router>
