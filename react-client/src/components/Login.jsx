@@ -40,16 +40,8 @@ class Login extends Component {
      type: 'POST',
      data: this.state,
      success: (data) => {
-      if(this.state.data!==""){
-       history.pushState({},'','/Account')
-       window.location.reload()
-        }
-        else{
-        history.pushState({},'','/Account')
-        }
-        //window.location.reload()
          this.setState({data:data});
-         alert(data)
+        
          console.log(data)
      }
    });
@@ -60,7 +52,7 @@ class Login extends Component {
       return (
         <Router>
          
-          <Route path="/Account" component={Account}/>
+          <Route path="/user" render={()=><Account name={this.state.states.userName} />}/>
        
         </Router>
       )
@@ -69,14 +61,15 @@ class Login extends Component {
     else {
    return (
      <center>
-      <div>
+      <div id='Login'>
        <h1>Log in</h1>
-       <input type="text" name="userName" placeholder="userName" value={this.state.userName} onChange={this.onChange}/><br/><br/><br/>
-       <input type="text" name="passWord" placeholder="passWord" value={this.state.passWord} onChange={this.onChange}/><br/>
+       <input id='Logininput2' type="text" name="userName" placeholder="userName" value={this.state.userName} onChange={this.onChange}/><br/><br/><br/>
+       <input id='Logininput2'type="password" name="passWord" placeholder="passWord" value={this.state.passWord} onChange={this.onChange}/><br/>
        <br/><br/><br/>
-    
-          <button onClick={this.Login} >Login</button>
-               </div>
+       <Router>
+          <Link to="/user"><button id="signinbutton" onClick={this.Login} >Login</button></Link>
+         </Router>
+      </div>
      </center>
    )
  }

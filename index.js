@@ -69,10 +69,6 @@ app.get('/signup', handler.signupUserForm);
 app.post('/signup', handler.signupUser);
 
 
-app.get('/signin', handler.signinUserForm);
-app.post('/signin', handler.signinUser);
-
-
 app.get('/', function (req, res) {
    res.send("");
  })
