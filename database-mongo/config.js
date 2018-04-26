@@ -1,6 +1,6 @@
 var mongoose=require ("mongoose");
 var databaseConnect = 'mongodb://localhost/ReduceRuse'
-mongoose.connect(databaseConnect);
+mongoose.connect("mongodb://recycle:123456789@ds151554.mlab.com:51554/recycle");
 //"mongodb://recycle:123456789@ds151554.mlab.com:51554/recycle"
 var db = mongoose.connection;
 
