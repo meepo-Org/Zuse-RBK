@@ -79,7 +79,7 @@ class App extends Component {
           <br></br>
           <br></br>
           <button id='submit' style={{width: 70 }} onClick={()=> this.submit(this.state.type)}>Show suggestions</button>
-          <SuggestionList suggestions={this.state.suggestions}/>
+          <SuggestionList suggestions={this.state.suggestions} submitlike={this.submit} typelike={this.state.type}/>
             
         
         </center>
