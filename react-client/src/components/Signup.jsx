@@ -40,10 +40,11 @@ class Signup extends Component {
      type: 'POST',
      data: this.state,
      success: (data) => {
-      
       this.setState({data:data})
-      console.log("djjjj",this.state.data)
-     
+      if(data===""){
+       alert("This Email is already taken, Try another one")
+      }
+    
      }
     });
   }

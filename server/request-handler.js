@@ -129,6 +129,16 @@ exports.Profilesave = function(req, res) {
  })
 }
 
+exports.deletePost= function(req, res) {
+  Profile.remove({_id:req.body.id},function(err,data){
+           if(err){
+       res.status(500).send("err");
+         }
+         else{
+        res.status(201).send("deleted");
+        }
+ })
+}
 
 exports.addSuggest= function(req, res) {
   var name=req.body.name;
@@ -137,7 +147,8 @@ exports.addSuggest= function(req, res) {
   var newSuggestion = new Suggest({
           name: name,
           type: type,
-          content:content
+          content:content,
+          count:0
         });
 
  newSuggestion.save(function(err,data) {
@@ -165,6 +176,18 @@ exports.showSuggest= function(req, res) {
         }
  })
 }
+
+exports.updateLikes=function (req, res) {
+  console.log(req.body.id)
+  console.log("countttt",req.body.count)
+ Suggest.findByIdAndUpdate({_id:req.body.id},{ count: req.body.count}, function (err, data) {
+  if (err){ console.log("errrrrr",err)};
+  res.send(data);
+ }
+  )
+}
+
+
 
 exports.home= function(req, res) {
   Profile.find({},function(err,data){

@@ -40,14 +40,16 @@ class Login extends Component {
      type: 'POST',
      data: this.state,
      success: (data) => {
-         this.setState({data:data});
-        
-         console.log(data)
+      this.setState({data:data});
+        if(data===""){
+       alert("incorrect password")
+      }
      }
    });
  }
 
  render(){
+   //user page
   if(this.state.data!==""){
       return (
         <Router>
@@ -57,7 +59,7 @@ class Login extends Component {
         </Router>
       )
     }
-    //sign up page
+    //Log in page
     else {
    return (
      <center>

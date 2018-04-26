@@ -14,8 +14,9 @@ app.post('/Signup', handler.signupUser);
 app.post('/Profile', handler.Profilesave);
 app.post('/Suggest', handler.addSuggest);
 app.post('/suggestions', handler.showSuggest);
- 
- app.get('/Logout', handler.logout);
+app.put('/SuggestionList',handler.updateLikes )
+app.delete('/delete',handler.deletePost )
+app.get('/Logout', handler.logout);
 app.post('/Login', handler.signinUser);
 app.get('/Home', handler.home);
 app.post('/Message',handler.sendMessage)
@@ -26,6 +27,7 @@ app.get('/', function (req, res) {
  })
 
 
-app.listen(3000, function() {
- console.log('listening on port 3000!');
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Our app is running on port ${ PORT }`);
 });

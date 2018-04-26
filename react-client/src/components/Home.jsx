@@ -8,6 +8,7 @@ class Home extends Component {
     this.state = { 
       to:'',
       content:'',
+      input:'',
       ismessagehiddin:true
      
     };
@@ -22,10 +23,11 @@ onChange (e) {
        [e.target.name]: e.target.value 
         });
   }
- showmessagebox(to){
+ showmessagebox(to,content){
   this.setState({
       ismessagehiddin: ! this.state.ismessagehiddin,
-      to: to
+      to: to,
+     content:content
     });
  }
 
@@ -40,7 +42,10 @@ onChange (e) {
          content:content
       },
       success: (data) => {
-        alert(data)
+       
+        this.showmessagebox("","");
+         this.setState({input:''});
+          alert("Your message is sent");
       },
     });
   }
@@ -53,7 +58,7 @@ render(){
     		               <div id ='homehome'>  
     		              <table id ='table2'>  
     		               <tr>
-                         <th><a onClick={()=> this.showmessagebox(item.name)} >{item.name}</a></th>
+                         <th><a onClick={()=> this.showmessagebox(item.name,item.post)} >{item.name}</a></th>
                            </tr>
                        <tr>
                       <td>{item.select}</td>
@@ -64,16 +69,15 @@ render(){
                        </tr>
                       </table>
                        <br></br>
-    		              </div>
-    		               
-    )}
-         <center>
-         <div>
+    		              
+    		               <div>
 
-            {this.state.ismessagehiddin ? null : <textarea id='home' onChange={this.onChange} value={this.state.content} name="content"/>}
-            {this.state.ismessagehiddin ? null : <button id='home1' onClick={()=> this.addMessage(this.state.to,this.state.content)}>send</button>}
+            {this.state.ismessagehiddin ? null : (this.state.content==item.post)?<div><textarea id='home' onChange={this.onChange} value={this.state.input} name="input"/><button id='home1' onClick={()=> this.addMessage(this.state.to,this.state.input)}>send</button>  </div>:null}
+            
           </div>
-          </center>
+          </div>
+    )}
+         
   </div>
 
 )

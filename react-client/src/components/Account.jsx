@@ -16,7 +16,9 @@ class Account extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      extra:[]
+      extra:[],
+      myposts:[]
+
      };
      this.submit = this.submit.bind(this);
     this.Logout = this.Logout.bind(this);
@@ -29,7 +31,11 @@ class Account extends Component {
       type:'GET',
       url: '/Home',
       success: (data) => {
-        this.setState({extra:data})
+        var myname=this.props.name;
+        var mine=data.filter(function(post) {return post.name==myname})
+        console.log(mine);
+        this.setState({myposts:mine});
+        this.setState({extra:data});
       },
     });
   }
@@ -54,7 +60,7 @@ class Account extends Component {
      
       <div id='line'>
            <Link onClick={this.submit} to="/Home" style={{color: 'black',paddingLeft: 13,textDecoration: 'none'}}>Home</Link>
-           <Link to="/Profile" style={{color: 'black',paddingLeft: 13,textDecoration: 'none'}}>Profile</Link>
+           <Link onClick={this.submit} to="/Profile" style={{color: 'black',paddingLeft: 13,textDecoration: 'none'}}>Profile</Link>
           
           <Link to="/Login" onClick={this.Logout} style={{color: 'black',paddingLeft: 13,textDecoration: 'none'}}>Logout</Link>
           </div>
@@ -62,7 +68,7 @@ class Account extends Component {
           <div className="content">
             
             <Route path="/Home" render={()=><Home extraa={this.state.extra} name={this.props.name}/> } />
-            <Route path="/Profile" render={()=><Profile name={this.props.name}/> } />
+            <Route path="/Profile" render={()=><Profile name={this.props.name} userPosts={this.state.myposts} deletePost={this.submit}/> } />
            
           </div>
 

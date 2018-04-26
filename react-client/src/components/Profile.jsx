@@ -21,6 +21,7 @@ class Profile extends Component {
     this.onChange=this.onChange.bind(this);
     this.addsuggest=this.addsuggest.bind(this);
     this.recieveMessage=this.recieveMessage.bind(this);
+    this.deletemessage=this.deletemessage.bind(this);
 }
 
     onChange (e) {
@@ -39,8 +40,9 @@ class Profile extends Component {
         post:post,
         name:this.props.name
       },
-      success: (data) => {
-        alert(data)
+      success: (data) =>
+      {
+          this.props.deletePost()
       },
     });
   }
@@ -70,13 +72,29 @@ addsuggest(type,content) {
         name:this.props.name,
       },
       success: (data) => {
-        alert(data)
+       
         this.setState({
           message:data,
         })
       },
     });
   }
+
+  deletemessage(id) {
+    
+    // console.log(id)
+    $.ajax({ 
+      type:'DELETE',
+      url: '/delete',
+      data:{
+        id:id
+      },
+      success: (data) => {
+       this.props.deletePost()
+      
+      }
+    });
+}
    
 
 render(){
@@ -134,6 +152,25 @@ render(){
   </th>
   </tr>
   </table>
+
+   {this.props.userPosts.map(item => 
+                    <div id ='homehome'>  
+                    <table id ='table2'>  
+                     <tr>
+                       <th>{item.name}</th>
+                         </tr>
+                       <tr>
+                    <td>{item.select}</td>
+                     </tr>
+                     <tr>
+                    <td>{item.post}</td>
+                     </tr>
+                    </table>
+                     <br></br>
+                    
+                      <button onClick={()=> this.deletemessage(item._id)}>delete From Home</button>
+                       </div>
+    )}
   </center>
   </div>
   )
