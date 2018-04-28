@@ -1,19 +1,17 @@
 var express = require('express');
 var bodyParser = require('body-parser');
-var user = require('../database-mongo');
+var database = require('../database-mongo/config.js');
 var app = express();
 
- var handler=require('./request-handler.js');
- var mongoose=require('mongoose');
+var handler=require('./request-handler.js');
+var mongoose=require('mongoose');
 
-
-app.use(express.static(__dirname + '/../react-client/dist'));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
-
+app.use(express.static(__dirname + '/../react-client/dist'));
 
 app.post('/Signup', handler.signupUser);
-app.post('/Profile', handler.Profilesave);
+app.post('/Stuff', handler.Stuffsave);
 app.post('/Suggest', handler.addSuggest);
 app.post('/suggestions', handler.showSuggest);
 app.put('/SuggestionList',handler.updateLikes )
@@ -25,11 +23,11 @@ app.post('/Message',handler.sendMessage)
 app.post('/inbox',handler.message);
 
 app.get('/', function (req, res) {
-   res.send("");
- })
+	res.send("");
+})
 
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
-    console.log(`Our app is running on port ${ PORT }`);
+	console.log(`Our app is running on port ${ PORT }`);
 });
