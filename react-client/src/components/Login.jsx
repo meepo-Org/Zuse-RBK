@@ -64,7 +64,11 @@ class Login extends Component {
    return (
      <center>
       <div id='Login'>
-       <h1>Log in</h1>
+      
+
+       <h1 style={{color:'white'}}>Log in</h1>
+       <br></br>
+      <br></br>
        <input id='Logininput2' type="text" name="userName" placeholder="userName" value={this.state.userName} onChange={this.onChange}/><br/><br/><br/>
        <input id='Logininput2'type="password" name="passWord" placeholder="passWord" value={this.state.passWord} onChange={this.onChange}/><br/>
        <br/><br/><br/>

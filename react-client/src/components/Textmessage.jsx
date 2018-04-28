@@ -5,18 +5,12 @@ const Textmessage = (props) => (
     
    
     {props.data.map(item => 
-                      <div id='List'>    
+                      <div className="container" id ='table2'>    
 
-                      <table id ='table'>
-                    <tr>
-                      <th>{item.From}</th>
-      
-                     </tr> 
-                     <tr>
-                      <td>{item.content}</td>
-                       </tr>   
-
-                      </table>
+                      <div >
+                      <h1>{item.From}</h1>
+                      <pre className="pre">{item.content}</pre>
+                      </div>
                      <br></br>
                       </div>
       

@@ -6,11 +6,9 @@ var app = express();
  var handler=require('./request-handler.js');
  var mongoose=require('mongoose');
 
-
-app.use(express.static(__dirname + '/../react-client/dist'));
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json());
-
+app.use(express.static(__dirname + '/../react-client/dist'));
 
 app.post('/Signup', handler.signupUser);
 app.post('/Profile', handler.Profilesave);

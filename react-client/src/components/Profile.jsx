@@ -13,7 +13,8 @@ class Profile extends Component {
       post:'',
       type:'',
       content:'',
-       message:[]
+       message:[],
+       showInbox:false 
      
     };
 
@@ -75,6 +76,7 @@ addsuggest(type,content) {
        
         this.setState({
           message:data,
+          showInbox:!this.state.showInbox
         })
       },
     });
@@ -94,86 +96,101 @@ addsuggest(type,content) {
       
       }
     });
-}
    
+}
+    
 
 render(){
+   if(this.state.showInbox){
    return (
     <div>
     <center>
   <div id='message1'>
-  <button id="signinbutton" onClick={this.recieveMessage}>inbox</button>
+  <button id="signinbutton" onClick={this.recieveMessage}>📩inbox</button>
   <Textmessage data={this.state.message}/>
   </div>
-
-    <table id='tab'>
-    <tr>
-    <th>
-    <div id='profile1' >
-    <h1>Not Used</h1>
-    
-<select id='select' onChange={this.onChange} value={this.state.select} name="select">
-  <option value="type">type</option>
-  <option value="plastic">plastic</option>
-  <option value="clothes">clothes</option>
-  <option value="wood">wood</option>
-  <option value="iron">iron</option>
-       </select>
-  <br></br>
-  <br></br>
-  
-  <textarea id='textarea' name="post" placeholder="post" value={this.state.post} onChange={this.onChange} rows="4" cols="50">
-  </textarea>
-     <br></br>
-     <br></br>
-     
-  <button id="signinbutton" onClick={()=> this.submit(this.state.select,this.state.post)}>post</button>
-  </div>
-  </th>
-  <th>
-  <div id='profile2'>
-  <h1>Add Suggest</h1>
-  
-  <select id='select' onChange={this.onChange} value={this.state.type} name="type">
-  <option value="type">type</option>
-  <option value="plastic">plastic</option>
-  <option value="clothes">clothes</option>
-  <option value="wood">wood</option>
-  <option value="iron">iron</option>
-       </select>
-  <br></br>
-  <br></br>
-  <textarea id='textarea' name="content" placeholder="content" value={this.state.content} onChange={this.onChange} rows="4" cols="50">
-  </textarea>
-     <br></br>
-     <br></br>
-  <button id="signinbutton" onClick={()=> this.addsuggest(this.state.type,this.state.content)}>suggest</button>
-  </div>
-  </th>
-  </tr>
-  </table>
-
-   {this.props.userPosts.map(item => 
-                    <div id ='homehome'>  
-                    <table id ='table2'>  
-                     <tr>
-                       <th>{item.name}</th>
-                         </tr>
-                       <tr>
-                    <td>{item.select}</td>
-                     </tr>
-                     <tr>
-                    <td>{item.post}</td>
-                     </tr>
-                    </table>
-                     <br></br>
-                    
-                      <button onClick={()=> this.deletemessage(item._id)}>delete From Home</button>
-                       </div>
-    )}
   </center>
   </div>
-  )
+)}else
+    {return (
+       <div>
+      <center>
+      <button id="signinbutton" onClick={this.recieveMessage}>📩inbox</button>     
+      <table id='tab'>
+        <tr>
+        <th>
+        <div id='profile1' className='container'>
+        <h1>Second Hand Stuff</h1>
+        
+    <select id='AddSuggest' onChange={this.onChange} value={this.state.select} name="select">
+      <option value="type">type</option>
+      <option value="plastic">plastic</option>
+      <option value="clothes">clothes</option>
+      <option value="wood">wood</option>
+      <option value="iron">iron</option>
+           </select>
+      <br></br>
+      <br></br>
+      
+      <textarea id='AddSuggesttextarea' name="post" placeholder="post" value={this.state.post} onChange={this.onChange} rows="4" cols="50">
+      </textarea>
+         <br></br>
+         <br></br>
+         
+      <button id="signinbutton" onClick={()=> this.submit(this.state.select,this.state.post)}>post</button>
+      </div>
+      </th>
+      <th>
+      <div id='profile2' className='container'>
+      
+      <h1>Add Suggest</h1>
+      
+      <select id='AddSuggest' onChange={this.onChange} value={this.state.type} name="type">
+      <option value="type">type</option>
+      <option value="plastic">plastic</option>
+      <option value="clothes">clothes</option>
+      <option value="wood">wood</option>
+      <option value="iron">iron</option>
+           </select>
+      <br></br>
+      <br></br>
+      <textarea id='AddSuggesttextarea' name="content" placeholder="content" value={this.state.content} onChange={this.onChange} rows="4" cols="50">
+      </textarea>
+         <br></br>  
+         <br></br>
+      <button id="signinbutton" onClick={()=> this.addsuggest(this.state.type,this.state.content)}>suggest</button>
+      </div>
+      </th>
+      </tr>
+      </table>
+      <center>
+    <h1>My Inventory</h1> </center>
+    <div className="container" id ='table2'>  
+                        
+                        <div className="container"> 
+       {this.props.userPosts.map(item => 
+                         <div> 
+                         <center>  
+                        <h2>{item.select}</h2>
+                        <pre className="pre">{item.post}</pre>
+                         <button onClick={()=> this.deletemessage(item._id)}>🗑 delete From Home</button>
+                           <br></br>
+                           <br></br>
+                           <br></br>
+                           </center>
+                           </div>
+                        
+        )}
+       </div>
+                       
+                         <br></br>
+                        
+    
+                           </div>
+    
+      </center>
+      </div>
+      )}
 
  }
 }

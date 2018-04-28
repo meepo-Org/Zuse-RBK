@@ -55,19 +55,13 @@ render(){
   <div>
    
     {this.props.extraa.map(item => 
-    		               <div id ='homehome'>  
-    		              <table id ='table2'>  
-    		               <tr>
-                         <th><a onClick={()=> this.showmessagebox(item.name,item.post)} >{item.name}</a></th>
-                           </tr>
-                       <tr>
-                      <td>{item.select}</td>
-                       </tr>
-
-                       <tr>
-                      <td>{item.post}</td>
-                       </tr>
-                      </table>
+    		               <div className="container" id ='table2'>  
+    		              <div>  
+    		               
+                      <h1>{item.select}</h1>    
+                      <pre className="pre"><b>{item.post}</b></pre>
+                       <h2 onClick={()=> this.showmessagebox(item.name,item.post)} >📤{item.name}</h2>
+                      </div>
                        <br></br>
     		              
     		               <div>

@@ -65,7 +65,8 @@ class Signup extends Component {
       return (
        <center>
         <div id='Signup'>
-         <h1>Sign up</h1>
+         <h1 style={{color:'white'}}>Sign up</h1>
+         <br></br>
          <input id='Signupinput1' type="text" name="userName" placeholder="userName" value={this.state.userName} onChange={this.onChange} /><br/><br/><br/>
          <input id='Signupinput2' type="text" name="Email" placeholder="Email" value={this.state.Email} onChange={this.onChange}/><br/><br/><br/>
          <input id='Signupinput3' type="password" name="passWord" placeholder="passWord" value={this.state.passWord} onChange={this.onChange}/><br/>

@@ -47,27 +47,26 @@ class SuggestionList extends Component {
 render(){
    return (
 
-  <div>
+  <div className="container">
    
                        {this.props.suggestions.map(suggestion => 
-                      <div id='List'>    
+                      <div id='table2'>    
 
-                      <table id ='table'>
-                    <tr>
-                      <th>{suggestion.name}</th>
-      
-                     </tr> 
-                     <tr>
-                      <td>{suggestion.content}</td>
-                       </tr>   
-                      
-                      </table>
-                     <br></br>
+                      <div id ='table'id="suggestionPre">
+                      <h1>{suggestion.name}</h1>
+                      <pre className="pre">{suggestion.content}</pre>
+                         
+                      </div>
+                   
                        <div className="counter">
         <p> likes {suggestion.count}</p>
         <button id='like' type="button" onClick={()=> this.submit(suggestion._id,suggestion.count+1)}>❤️Like</button>
         <button id='like' type="button" onClick={()=> this.submit(suggestion._id,suggestion.count-1)}>👎Unlike</button>
-        
+          <br></br>
+          <br></br>
+          <br></br>
+          
+
           </div>
                       </div>
                        
