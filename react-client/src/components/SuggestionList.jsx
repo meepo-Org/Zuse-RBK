@@ -8,27 +8,14 @@ class SuggestionList extends Component {
     this.state = { 
       count: 0
     };
-    // this.incrementCount=this.incrementCount.bind(this);
-    // this.DecrementCount=this.DecrementCount.bind(this);
-   this.submit=this.submit.bind(this);
-}
-
-// incrementCount(){
-//     this.setState({
-//       count: this.state.count + 1
-//     });
-//         }
+    
+    this.submit=this.submit.bind(this);
+  }
 
 
-//         DecrementCount(){
-//     this.setState({
-//       count: this.state.count - 1
-//     });
-//   }
 
   submit(id,count) {
     
-    // console.log(id)
     console.log(count)
     $.ajax({ 
       type:'PUT',
@@ -39,43 +26,43 @@ class SuggestionList extends Component {
       },
       success: (data) => {
        this.props.submitlike(this.props.typelike)
-      
-      }
-    });
-}
+       
+     }
+   });
+  }
 
-render(){
+  render(){
    return (
 
-  <div className="container">
-   
-                       {this.props.suggestions.map(suggestion => 
-                      <div id='table2'>    
+    <div className="container">
+    
+    {this.props.suggestions.map(suggestion => 
+      <div id='table2'>    
 
-                      <div id ='table'id="suggestionPre">
-                      <h1>{suggestion.name}</h1>
-                      <pre className="pre">{suggestion.content}</pre>
-                         
-                      </div>
-                   
-                       <div className="counter">
-        <p> likes {suggestion.count}</p>
-        <button id='like' type="button" onClick={()=> this.submit(suggestion._id,suggestion.count+1)}>❤️Like</button>
-        <button id='like' type="button" onClick={()=> this.submit(suggestion._id,suggestion.count-1)}>👎Unlike</button>
-          <br></br>
-          <br></br>
-          <br></br>
-          
+      <div id ='table'id="suggestionPre">
+      <h1>{suggestion.name}</h1>
+      <pre className="pre">{suggestion.content}</pre>
+      
+      </div>
+      
+      <div className="counter">
+      <p> likes {suggestion.count}</p>
+      <button id='like' type="button" onClick={()=> this.submit(suggestion._id,suggestion.count+1)}>❤️Like</button>
+      <button id='like' type="button" onClick={()=> this.submit(suggestion._id,suggestion.count-1)}>👎Unlike</button>
+      <br></br>
+      <br></br>
+      <br></br>
+      
 
-          </div>
-                      </div>
-                       
-    )}
+      </div>
+      </div>
+      
+      )}
 
-        
-  </div>
+    
+    </div>
 
-)
+    )
  }
 }
 
@@ -83,30 +70,3 @@ render(){
 export default SuggestionList;
 
 
-// import React from 'react';
-
-// const List = (props) => (
-//   <div >
-    
-   
-//     {props.items.map(item => 
-//                       <div id='List'>    
-
-//                       <table id ='table'>
-//                     <tr>
-//                       <th>{item.name}</th>
-      
-//                      </tr> 
-//                      <tr>
-//                       <td>{item.content}</td>
-//                        </tr>   
-
-//                       </table>
-//                      <br></br>
-//                       </div>
-      
-//     )}  
-//   </div>
-// )
-// <button id='like' type="button" onClick={this.DecrementCount}>👎Unlike</button>
-// export default List;
