@@ -57,7 +57,6 @@ render() {
    return (
 
     <div>
-
     <div className="jumbotron">
     <div className="container text-center">
     <h1>Second Hand Store</h1>      

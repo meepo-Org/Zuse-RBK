@@ -1,7 +1,5 @@
 var mongoose=require ("mongoose");
-//var databaseConnect = 'mongodb://localhost/ReduceRuse'
 mongoose.connect('mongodb://localhost/ReduceRuse');
-
 
 var db = mongoose.connection;
 

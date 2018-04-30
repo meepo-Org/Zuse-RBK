@@ -20,7 +20,6 @@ var user = mongoose.Schema({
 var User = mongoose.model('User', user);
 
 
-
 User.comparePassword = function(attemptedPassword,savedPassword,callback) {
   bcrypt.compare(attemptedPassword, savedPassword, function(err, isMatch) {
     if(err){
@@ -30,7 +29,5 @@ User.comparePassword = function(attemptedPassword,savedPassword,callback) {
 
     });
 }
-
-
 
 module.exports= User;
