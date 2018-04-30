@@ -10,6 +10,7 @@ import {
 } from "react-router-dom";
 import Home from './Home.jsx';
 import Profile from './Profile.jsx';
+import Products from './Products.jsx';
 
 
 class Account extends Component {
@@ -78,6 +79,7 @@ render(){
     <div className="collapse navbar-collapse" id="myNavbar">
     <ul className="nav navbar-nav">
     <li><Link onClick={this.submit} to="/Home" style={{color: 'white',paddingLeft: 13,textDecoration: 'none'}}>Home</Link></li>
+    <li><Link  to="/Products" >Products</Link></li>
     <li> <Link onClick={this.submit} to="/Profile" style={{color: 'white',paddingLeft: 13,textDecoration: 'none'}}>Profile</Link></li>
     <li><Link to="/Login" onClick={this.Logout} style={{color: 'white',paddingLeft: 13,textDecoration: 'none'}}>Logout</Link></li>
     </ul>
@@ -87,9 +89,10 @@ render(){
     
     </div>
     </nav>
-    <div className="content">
     
+    <div className="content">
     <Route path="/Home" render={()=><Home extraa={this.state.extra} name={this.props.name}/> } />
+    <Route path="/Products" render={()=><Products extraa={this.state.extra} name={this.props.name}/> } />
     <Route path="/Profile" render={()=><Profile name={this.props.name} userPosts={this.state.myposts} rerender={this.submit}/> } />
     
     </div>

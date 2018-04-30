@@ -8,10 +8,7 @@ var suggest = mongoose.Schema({
 	count:{ type : Number, required : true }
 });
 
-
 var Suggest = mongoose.model('Suggest', suggest);
-
-
 
 module.exports = Suggest;
 
