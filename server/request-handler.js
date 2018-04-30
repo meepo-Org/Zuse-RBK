@@ -16,6 +16,9 @@ exports.signupUser = function(req, res) {
   var userName = req.body['states[userName]'];
   var passWord = req.body['states[passWord]'];
   var Email = req.body['states[Email]'];
+  var userType = req.body['states[userType]'];
+  var location=req.body['states[location]'];
+
   console.log(User,"user")
 
   User.findOne({ Email: Email },function(err,found){
@@ -24,7 +27,9 @@ exports.signupUser = function(req, res) {
      var newUser = new User({
       userName: userName,
       passWord: passWord,
-      Email: Email
+      Email: Email,
+      userType:userType,
+      location:location
 
     });
      bcrypt.hash(passWord, 10, function(err, hash) {
