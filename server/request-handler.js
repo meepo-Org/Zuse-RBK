@@ -14,35 +14,42 @@ exports.signupUser = function(req, res) {
   var userName = req.body['states[userName]'];
   var passWord = req.body['states[passWord]'];
   var Email = req.body['states[Email]'];
+  var userType = req.body['states[userType]'];
+  var location=req.body['states[location]'];
 
-   User.findOne({ Email: Email },function(err,found){
-   
+  console.log(User,"user")
+
+  User.findOne({ Email: Email },function(err,found){
+
+
    if (!found ){
      var newUser = new User({
-          userName: userName,
-          passWord: passWord,
-          Email: Email
+      userName: userName,
+      passWord: passWord,
+      Email: Email,
+      userType:userType,
+      location:location
 
-       });
-       bcrypt.hash(passWord, 10, function(err, hash) {
-        newUser.passWord=hash;
-        newUser.save(function(err,obj) {
-         if(err){
-            res.status(500).send(err);
-            console.log("error")
-         }
-         else{
-          res.status(201).send("Thank You");
-          console.log('Im in ')
-        }
-       })
-      });
-   }
-   else{
-    res.status(201).send("")
-  }
- })
-}
+    });
+     bcrypt.hash(passWord, 10, function(err, hash) {
+      newUser.passWord=hash;
+      newUser.save(function(err,obj) {
+       if(err){
+        res.status(500).send(err);
+        console.log("error")
+      }
+      else{
+        res.status(201).send("Thank You");
+      }
+    })
+    });
+       
+     }
+     else{
+      res.status(201).send("")
+    }
+  })  
+  } 
 
 exports.signinUser = function(req, res) {
   var userName = req.body['states[userName]'];

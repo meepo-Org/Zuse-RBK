@@ -6,11 +6,7 @@ class Products extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      item:{
-        itemName : '' ,
-        itemDisc : ''
-
-      }
+        
     }
     this.onChange = this.onChange.bind(this);
     this.itemEnter = this.itemEnter.bind(this);
@@ -30,11 +26,15 @@ class Products extends Component {
  });
   }
   onChange(e){
-   var item = this.state.item;
-   var name = e.target.name;
-   var value = e.target.value;
-   item[name] = value;
-   this.setState({item}); 
+   // var item = this.state.item;
+   // var name = e.target.name;
+   // var value = e.target.value;
+   // item.name = value;
+   // this.setState({item}); 
+    this.setState({
+     [e.target.name]: e.target.value 
+   });
+  
  }
  render(){
 
