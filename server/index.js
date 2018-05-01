@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../react-client/dist'));
 
 app.post('/Signup', handler.signupUser);
-app.post('/Profile', handler.Profilesave);
+app.post('/Stuff', handler.Stuffsave);
 app.post('/Suggest', handler.addSuggest);
 app.post('/suggestions', handler.showSuggest);
 app.put('/SuggestionList',handler.updateLikes )
