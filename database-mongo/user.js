@@ -5,7 +5,7 @@ var db = require('./config');
 
 var user = mongoose.Schema({
   userType:String,
-  userName: { type : String, required : true },
+  userName: { type : String, required : true , unique : true},
   passWord: { type : String, required : true },
   Email:{ type : String, required : true },
   location:String,

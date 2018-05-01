@@ -40,8 +40,7 @@ class Profile extends Component {
         post:post,
         name:this.props.name
       },
-      success: (data) =>
-      {
+      success: (data) => {
           // whenever something changed we need to rerender the whole array.
           this.props.rerender()
         },

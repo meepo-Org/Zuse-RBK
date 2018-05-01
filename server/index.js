@@ -21,7 +21,7 @@ app.post('/Login', handler.signinUser);
 app.get('/Home', handler.home);
 app.post('/Message',handler.sendMessage)
 app.post('/inbox',handler.message);
-app.post('/Product', handler.addProduct)
+app.post('/Products', handler.addProduct)
 
 app.get('/', function (req, res) {
    res.send("");
