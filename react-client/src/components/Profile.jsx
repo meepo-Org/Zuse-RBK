@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+import { Well, Image , Col } from 'react-bootstrap';
 import Textmessage from './Textmessage.jsx'
-
 
 class Profile extends Component {
   constructor(props) {
@@ -110,6 +110,22 @@ class Profile extends Component {
      {return (
        <div>
        <center>
+       <div className="container">
+       <Well>
+       <div className="card" >
+       <Image className="img-circle" src="https://www.gettyimages.ie/gi-resources/images/Homepage/Hero/UK/CMS_Creative_164657191_Kingfisher.jpg" width="304" height="236" />
+       <h2>Person name </h2>
+      
+     
+  <div className="card-body">
+    <h3 className="card-title">Card title</h3>
+    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    <a href="#" >Go somewhere</a>
+  </div>
+    </div>
+       </Well>
+       </div>
+
        <button id="signinbutton" onClick={this.recieveMessage}>📩inbox</button>     
        <table id='tab'>
        <tr>

@@ -64,7 +64,7 @@ render() {
     </div>
     </div>
 
-    <nav className="navbar navbar-inverse">
+    <nav className=" navbar-inverse navbar navbar-default navbar-fixed-top">
     <div className="container-fluid">
     <div className="navbar-header">
     <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
@@ -157,14 +157,14 @@ class Main extends Component{
   render(){
     return(
       <div>
-      <div class="container">
+      <div className="container">
       <center>
       <form>
-      <div class="form-group">
+      <div className="form-group">
       <label for="sel1">Material Type</label>
       <br></br>
       <br></br>
-      <select class="form-control" id="sel1" id='select' onChange={this.onChange} value={this.state.type} name="type">
+      <select className="form-control" id="sel1" id='select' onChange={this.onChange} value={this.state.type} name="type">
       <option value="type">type</option>
       <option value="plastic">plastic</option>
       <option value="clothes">clothes</option>
