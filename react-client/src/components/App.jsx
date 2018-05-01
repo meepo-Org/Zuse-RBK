@@ -137,7 +137,7 @@ class Main extends Component{
      [e.target.name]: e.target.value 
    });
   }
-  //data is stored in suggest schema which is the input value in Profile.jsx
+  //data is stored in suggest schema which is the input value in FreeProducts.jsx
   submit(type) {
     $.ajax({ 
       type:'POST',

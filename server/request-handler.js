@@ -7,10 +7,6 @@ var Suggest=require('../database-mongo/suggest.js');
 var Product=require('../database-mongo/product.js');
 var Message=require('../database-mongo/message.js');
 
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-var util=require('./utility.js')
-
 exports.signupUser = function(req, res) {
   var userName = req.body['states[userName]'];
   var passWord = req.body['states[passWord]'];
@@ -18,11 +14,9 @@ exports.signupUser = function(req, res) {
   var userType = req.body['states[userType]'];
   var location=req.body['states[location]'];
 
-  console.log(User,"user")
+  //console.log(User,"user")
 
   User.findOne({ Email: Email },function(err,found){
-
-
    if (!found ){
      var newUser = new User({
       userName: userName,
@@ -80,10 +74,12 @@ exports.Stuffsave = function(req, res) {
   var name=req.body.name;
   var select=req.body.select;
   var post=req.body.post;
+  var stuffImg = req.body.stuffImg;
   var newstuff = new Stuff({
     name: name,
     select: select,
-    post:post
+    post:post,
+    stuffImg: stuffImg
   });
 
   newstuff.save(function(err,data) {

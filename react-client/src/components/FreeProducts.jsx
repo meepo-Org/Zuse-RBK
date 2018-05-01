@@ -4,7 +4,7 @@ import $ from 'jquery';
 import { Well, Image , Col } from 'react-bootstrap';
 import Textmessage from './Textmessage.jsx'
 
-class Profile extends Component {
+class FreeProducts extends Component {
   constructor(props) {
     super(props);
     this.state = { 
@@ -14,8 +14,8 @@ class Profile extends Component {
       type:'',
       content:'',
       message:[],
-      showInbox:false 
-
+      showInbox:false ,
+      stuffImg: ''
     };
 
     this.submit=this.submit.bind(this);
@@ -31,14 +31,15 @@ class Profile extends Component {
    });
   }
 // you can either add add not used stuff post or recycling idea
-  submit(select,post) {
+  submit(select,post, stuffImg) {
     $.ajax({ 
       type:'POST',
-      url: '/Stuff',
+      url: '/FreeProducts',
       data:{
         select:select,
         post:post,
-        name:this.props.name
+        name:this.props.name,
+        stuffImg: stuffImg
       },
       success: (data) => {
           // whenever something changed we need to rerender the whole array.
@@ -130,7 +131,8 @@ class Profile extends Component {
        <br></br>
        <br></br>
 
-       <button id="signinbutton" onClick={()=> this.submit(this.state.select,this.state.post)}>post</button>
+       <input type="text" value={this.state.stuffImg} name="stuffImg" onChange={this.onChange} placeholder="enter image URL here"></input>
+       <button id="signinbutton" onClick={()=> this.submit(this.state.select,this.state.post, this.state.stuffImg)}>post</button>
        </div>
        </th>
        <th>
@@ -166,6 +168,7 @@ class Profile extends Component {
          <center>  
          <h2>{item.select}</h2>
          <pre className="pre">{item.post}</pre>
+         <img src={item.stuffImg} width="200" height="200"></img>
          <button onClick={()=> this.deletepost(item._id)}>🗑 delete From Home</button>
          <br></br>
          <br></br>
@@ -189,7 +192,7 @@ class Profile extends Component {
  }
 
 
- export default Profile;
+ export default FreeProducts;
 
 
 
