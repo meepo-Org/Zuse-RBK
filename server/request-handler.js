@@ -4,6 +4,7 @@ var db=require('../database-mongo/config.js');
 var User=require('../database-mongo/user.js');
 var Stuff=require('../database-mongo/stuff.js');
 var Suggest=require('../database-mongo/suggest.js');
+var Product=require('../database-mongo/product.js');
 var Message=require('../database-mongo/message.js');
 
 var bodyParser = require('body-parser');
@@ -211,24 +212,39 @@ exports.logout = function(req, res) {
 }
 
 exports.addProduct = function (req , res) {
-  console.log(req.body)
-//   var name=req.body.name;
-//   var select=req.body.select;
-//   var post=req.body.post;
-//   var newstuff = new Stuff({
-//     name: name,
-//     select: select,
-//     post:post
-//   });
+  var name=req.body.name;
+  var productName=req.body.productName;
+  var productDisc=req.body.productDisc;
+  var productImg=req.body.productImg;
 
-//   newstuff.save(function(err,data) {
-//    if(err){
-//      res.status(500).send(err);
-//    }
+  var newProduct = new Product({
+    name: name,
+    productName: productName,
+    productDisc:productDisc , 
+    productImg:productImg
+  });
 
-//    else{
-//     res.status(201).send(data);
-//     console.log('saved')
-//   }
-// })
+  newProduct.save(function(err,data) {
+   if(err){
+     res.status(500).send(err);
+   }
+
+   else{
+    res.status(201).send(data);
+    console.log('saved')
+  }
+})
+}
+
+exports.getProduct = function (req , res) {
+  Product.find({},function(err,data){
+    if(err){
+     res.status(500).send(err);
+   }
+
+   else{
+    res.status(201).send(data);
+    console.log('Product work')
+  }
+})
 }
