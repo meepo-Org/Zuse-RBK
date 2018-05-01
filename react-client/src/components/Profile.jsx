@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+import { Well, Image , Col } from 'react-bootstrap';
 import Textmessage from './Textmessage.jsx'
-
 
 class Profile extends Component {
   constructor(props) {
@@ -116,7 +116,6 @@ class Profile extends Component {
        <th>
        <div id='profile1' className='container'>
        <h1>Second Hand Stuff</h1>
-
        <select id='AddSuggest' onChange={this.onChange} value={this.state.select} name="select">
        <option value="type">type</option>
        <option value="plastic">plastic</option>

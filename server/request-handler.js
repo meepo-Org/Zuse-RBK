@@ -75,30 +75,30 @@ exports.signinUser = function(req, res) {
 };
 
 
-exports.Profilesave = function(req, res) {
+exports.Stuffsave = function(req, res) {
+  console.log(req.body)
   var name=req.body.name;
   var select=req.body.select;
   var post=req.body.post;
-  var newprofile = new Profile({
-          name: name,
-          select: select,
-          post:post
-        });
+  var newstuff = new Stuff({
+    name: name,
+    select: select,
+    post:post
+  });
 
- newprofile.save(function(err,data) {
-           if(err){
-       res.status(500).send(err);
-         }
+  newstuff.save(function(err,data) {
+   if(err){
+     res.status(500).send(err);
+   }
 
-         else{
-        res.status(201).send("its saved");
-          console.log('saved')
-        }
- })
+   else{
+    res.status(201).send(data);
+    console.log('saved')
+  }
+})
 }
-
 exports.deletePost= function(req, res) {
-  Profile.remove({_id:req.body.id},function(err,data){
+  Stuff.remove({_id:req.body.id},function(err,data){
            if(err){
        res.status(500).send("err");
          }
@@ -156,7 +156,7 @@ exports.updateLikes=function (req, res) {
 }
 
 exports.home= function(req, res) {
-  Profile.find({},function(err,data){
+  Stuff.find({},function(err,data){
 
            if(err){
        res.status(500).send(err);
@@ -213,4 +213,11 @@ exports.logout = function(req, res) {
 
 exports.addProduct = function (req , res) {
   console.log(req.body)
+  User.findOne({ userName: userName }, function (err , user) {
+    if(!user){
+      console.log('user not found')
+    }else{
+      User.addProduct(req.body , user)
+    }
+  })
 }

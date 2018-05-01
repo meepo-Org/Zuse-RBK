@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+ import React, { Component } from "react";
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import {
@@ -66,7 +66,7 @@ render(){
     
     <div>
     
-    <nav className="navbar navbar-inverse">
+    <nav className="navbar-inverse navbar navbar-default navbar-fixed-top">
     <div className="container-fluid">
     <div className="navbar-header">
     <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
