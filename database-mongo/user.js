@@ -4,15 +4,20 @@ var Promise = require('bluebird');
 var db = require('./config');
 
 var user = mongoose.Schema({
+  userType:String,
   userName: { type : String, required : true },
   passWord: { type : String, required : true },
-  Email:{ type : String, required : true }
+  Email:{ type : String, required : true },
+  location:String,
+  freeProducts:[],
+  paidProducts:[],
+  buyRecord:[],
+  sellRecord:[]
+
 });
 
 
 var User = mongoose.model('User', user);
-
-
 
 
 User.comparePassword = function(attemptedPassword,savedPassword,callback) {
@@ -24,7 +29,5 @@ User.comparePassword = function(attemptedPassword,savedPassword,callback) {
 
     });
 }
-
-
 
 module.exports= User;
