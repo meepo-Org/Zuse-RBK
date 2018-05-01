@@ -6,16 +6,24 @@ class Products extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        
+         productName:'',
+        productDisc:'',
+        productImg : ''
     }
     this.onChange = this.onChange.bind(this);
     this.itemEnter = this.itemEnter.bind(this);
   }
   itemEnter() {
-    console.log(this.state.item)
+    console.log(this.state)
     $.ajax({
-     url: '/Product',
+     url: '/Products',
      type: 'POST',
+      //  data:{
+      //   productName:productName,
+      //   productDisc:productDisc,
+      //   productImg : productImg,
+      //   name:this.props.name
+      // },
      data: this.state,
      success: (data) => {
       this.setState({data:data})
@@ -26,10 +34,10 @@ class Products extends Component {
  });
   }
   onChange(e){
-   // var item = this.state.item;
+   // var item = this.state;
    // var name = e.target.name;
    // var value = e.target.value;
-   // item.name = value;
+   // item[name] = value;
    // this.setState({item}); 
     this.setState({
      [e.target.name]: e.target.value 
@@ -42,8 +50,8 @@ class Products extends Component {
 
     <div>
     <div className = "container">
-    <input type="text" name="itemName" placeholder="Item Name" value={this.state.itemName} onChange={this.onChange}/>
-    <input type="text" name="itemDisc" placeholder="Item Discription" value={this.state.itemDisc} onChange={this.onChange}/>
+    <input type="text" name="productName" placeholder="Item Name" value={this.state.itemName} onChange={this.onChange}/>
+    <input type="text" name="productDisc" placeholder="Item Discription" value={this.state.itemDisc} onChange={this.onChange}/>
     <button onClick={this.itemEnter} >ADD</button>
 
     </div>

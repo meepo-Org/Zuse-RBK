@@ -1,2 +1,8 @@
 node_modules
 
+## Environment normalization:
+/.bundle
+/react-client/dist/bundle.js
+bundle.js
+
+package-lock.json
