@@ -29,5 +29,11 @@ User.comparePassword = function(attemptedPassword,savedPassword,callback) {
 
     });
 }
+User.addProduct = function (Product ,user) {
+
+  user.freeProducts.push(Product)
+  console.log(user)
+  user.save()
+}
 
 module.exports= User;

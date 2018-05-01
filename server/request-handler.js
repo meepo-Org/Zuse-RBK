@@ -213,4 +213,11 @@ exports.logout = function(req, res) {
 
 exports.addProduct = function (req , res) {
   console.log(req.body)
+  User.findOne({ userName: userName }, function (err , user) {
+    if(!user){
+      console.log('user not found')
+    }else{
+      User.addProduct(req.body , user)
+    }
+  })
 }

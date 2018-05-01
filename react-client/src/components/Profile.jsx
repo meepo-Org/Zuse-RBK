@@ -110,29 +110,12 @@ class Profile extends Component {
      {return (
        <div>
        <center>
-       <div className="container">
-       <Well>
-       <div className="card" >
-       <Image className="img-circle" src="https://www.gettyimages.ie/gi-resources/images/Homepage/Hero/UK/CMS_Creative_164657191_Kingfisher.jpg" width="304" height="236" />
-       <h2>Person name </h2>
-      
-     
-  <div className="card-body">
-    <h3 className="card-title">Card title</h3>
-    <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" >Go somewhere</a>
-  </div>
-    </div>
-       </Well>
-       </div>
-
        <button id="signinbutton" onClick={this.recieveMessage}>📩inbox</button>     
        <table id='tab'>
        <tr>
        <th>
        <div id='profile1' className='container'>
        <h1>Second Hand Stuff</h1>
-
        <select id='AddSuggest' onChange={this.onChange} value={this.state.select} name="select">
        <option value="type">type</option>
        <option value="plastic">plastic</option>
