@@ -11,6 +11,7 @@ import {
 import Home from './Home.jsx';
 import FreeProducts from './FreeProducts.jsx';
 import Products from './Products.jsx';
+import Profile from './Profile.jsx';
 
 
 class Account extends Component {
@@ -79,8 +80,9 @@ render(){
     <div className="collapse navbar-collapse" id="myNavbar">
     <ul className="nav navbar-nav">
     <li><Link onClick={this.submit} to="/Home" style={{color: 'white',paddingLeft: 13,textDecoration: 'none'}}>Home</Link></li>
-    <li><Link  to="/Products" >Products</Link></li>
+    <li><Link  to="/Products" style={{color: 'white',paddingLeft: 13,textDecoration: 'none'}}>Paid Products</Link></li>
     <li> <Link onClick={this.submit} to="/FreeProducts" style={{color: 'white',paddingLeft: 13,textDecoration: 'none'}}>FreeProducts</Link></li>
+    <li><Link onClick={this.submit} to="/Profile" style={{color: 'white',paddingLeft: 13,textDecoration: 'none'}}>Profile</Link></li>
     <li><Link to="/Login" onClick={this.Logout} style={{color: 'white',paddingLeft: 13,textDecoration: 'none'}}>Logout</Link></li>
     </ul>
     
@@ -93,6 +95,7 @@ render(){
     <div className="content">
     <Route path="/Home" render={()=><Home extraa={this.state.extra} name={this.props.name}/> } />
     <Route path="/Products" render={()=><Products extraa={this.state.extra} name={this.props.name}/> } />
+    <Route path="/Profile" render={()=><Profile extraa={this.state.extra} name={this.props.name}/> } />
     <Route path="/FreeProducts" render={()=><FreeProducts name={this.props.name} userPosts={this.state.myposts} rerender={this.submit}/> } />
     
     </div>
