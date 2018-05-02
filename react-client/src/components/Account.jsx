@@ -36,7 +36,7 @@ submit() {
       console.log(mine);
       this.setState({myposts:mine});
       this.setState({extra:data});
-    },
+    }
   });
 }
 
@@ -96,7 +96,7 @@ render(){
     <Route path="/Home" render={()=><Home extraa={this.state.extra} name={this.props.name}/> } />
     <Route path="/Products" render={()=><Products extraa={this.state.extra} name={this.props.name}/> } />
     <Route path="/Profile" render={()=><Profile extraa={this.state.extra} name={this.props.name}/> } />
-    <Route path="/FreeProducts" render={()=><FreeProducts name={this.props.name} userPosts={this.state.myposts} rerender={this.submit}/> } />
+    <Route path="/FreeProducts" render={()=><FreeProducts name={this.props.name} extraa={this.state.extra} rerender={this.submit}/> } />
     
     </div>
 

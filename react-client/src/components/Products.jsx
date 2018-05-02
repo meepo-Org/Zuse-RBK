@@ -27,14 +27,17 @@ class Products extends Component {
 
    this.onChange = this.onChange.bind(this);
    this.itemEnter = this.itemEnter.bind(this);
-   $.ajax({ 
-    type:'GET',
-    url: '/Products',
-    success: (data) => {
-      this.setState({products:data});
+   // this.handleLoad = this.handleLoad.bind(this);
 
-    }
-  });
+     $.ajax({ 
+        type:'GET',
+        url: '/Products',
+        success: (data) => {
+      this.setState({products:data});
+          
+        }
+      });
+     console.log("this prps productjsx",this.props)
  }
  handleClose() {
   this.setState({ show: false });
@@ -45,8 +48,9 @@ handleShow() {
 }
 
 
-itemEnter(productName , productDisc , productImg) {
-  console.log(this.state)
+
+ itemEnter(productName , productDisc , productImg) {
+  console.log(this.this.props)
   $.ajax({
    url: '/Products',
    type: 'POST',
@@ -54,7 +58,8 @@ itemEnter(productName , productDisc , productImg) {
     productName:productName,
     productDisc:productDisc,
     productImg : productImg,
-    name:this.props.name
+    name:this.props.name,
+    userType:this.props.userType
   },
   success: (data) => {
     this.setState({data:data})
@@ -89,34 +94,18 @@ render(){
 
   return (
 
-    <div className="prod">
+    <div >
+  {this.props.name ?
 
-        <Modal show={this.state.show} onHide={this.handleClose}>
-          <Modal.Header closeButton>
-            <Modal.Title>Payment</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            <h4>Text in a modal</h4>
-            <Well>
-              <div className="container">
-                 Visa Information
+   
+  
 
-              </div>
-            </Well>
-            <hr />
+    
 
-            <h4>Overflowing text to show scroll behavior</h4>
-          </Modal.Body>
-          <Modal.Footer>
-            <Button onClick={this.handleClose}>Pay</Button>
-          </Modal.Footer>
-        </Modal>
-
-    <div className = "container " >
+    <div className = "container">
     <div className='row'>
     <Well>
     <div className='col-sm-4 input-group'>
-      
     <input className='form-control' type="text" name="productName" placeholder="Item Name" value={this.state.itemName} onChange={this.onChange}/>
     </div>
       
@@ -130,17 +119,39 @@ render(){
     </div>
     <button className='btn ' onClick={()=> this.itemEnter(this.state.productName,this.state.productDisc , this.state.productImg)}>ADD</button>
     </Well>
-
     </div>
     </div>
+    : null}
 
-    <div className="container" >    
+     <Modal show={this.state.show} onHide={this.handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Payment</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <h4>Text in a modal</h4>
+            <Well>
+              <div className="container">
+                 Visa Information
+
+
+              </div>
+            </Well>
+            <hr />
+
+            <h4>Overflowing text to show scroll behavior</h4>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.handleClose}>Pay</Button>
+          </Modal.Footer>
+        </Modal>
+
+   <div className="container" >    
     <div className="row">
     { this.state.products.map(item =>
 
       <div className="col-sm-4">
       <div  className="panel panel-default" >
-      <div className="panel-heading">{item.productName} <br></br> <p>suplied by {this.props.name}</p></div>
+      <div className="panel-heading">{item.productName} <br></br> <p>suplied by {item.name}</p></div>
       <div className="panel-body"><img src={item.productImg} className="img-responsive" width="300" height="300" /></div>
       <div className="panel-footer">{item.productDisc}</div>
 
@@ -193,6 +204,7 @@ render(){
     </div>
     </div>
     </div>
+
     )}
 }
 
