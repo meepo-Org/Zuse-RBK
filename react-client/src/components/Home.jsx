@@ -67,7 +67,12 @@ render(){
    
    <div>
 
-   {this.state.ismessagehiddin ? null : (this.state.content==item.post)?<div><textarea id='home' onChange={this.onChange} value={this.state.input} name="input"/><button id='home1' onClick={()=> this.addMessage(this.state.to,this.state.input)}>send</button>  </div>:null}
+   {this.state.ismessagehiddin ? null : 
+    (this.state.content==item.post)?<div>
+    <textarea id='home' onChange={this.onChange} value={this.state.input} name="input"/>
+    <button id='home1' onClick={()=>  this.addMessage(this.state.to,this.state.input)}>send</button>  
+    </div>
+    :null}
    
    </div>
    </div>
