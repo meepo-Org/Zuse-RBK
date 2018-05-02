@@ -100,6 +100,7 @@ render(){
             <Well>
               <div className="container">
                  Visa Information
+
               </div>
             </Well>
             <hr />
@@ -111,12 +112,26 @@ render(){
           </Modal.Footer>
         </Modal>
 
-    <div className = "container" >
-    <input type="text" name="productName" placeholder="Item Name" value={this.state.itemName} onChange={this.onChange}/>
-    <input type="text" name="productDisc" placeholder="Item Discription" value={this.state.itemDisc} onChange={this.onChange}/>
-    <input type="text" value={this.state.productImg} name="productImg" onChange={this.onChange} placeholder="enter image URL here"></input>
-    <button id="signinbutton" onClick={()=> this.itemEnter(this.state.productName,this.state.productDisc , this.state.productImg)}>ADD</button>
+    <div className = "container " >
+    <div className='row'>
+    <Well>
+    <div className='col-sm-4 input-group'>
+      
+    <input className='form-control' type="text" name="productName" placeholder="Item Name" value={this.state.itemName} onChange={this.onChange}/>
+    </div>
+      
+    <div className='col-sm-4 input-group'>
 
+    <input className='form-control' type="text" name="productDisc" placeholder="Item Discription" value={this.state.itemDisc} onChange={this.onChange}/>
+    </div>
+    <div className='col-sm-4 input-group'>
+    
+    <input className='form-control' type="text" value={this.state.productImg} name="productImg" onChange={this.onChange} placeholder="enter image URL here"></input>
+    </div>
+    <button className='btn ' onClick={()=> this.itemEnter(this.state.productName,this.state.productDisc , this.state.productImg)}>ADD</button>
+    </Well>
+
+    </div>
     </div>
 
     <div className="container" >    
@@ -126,7 +141,7 @@ render(){
       <div className="col-sm-4">
       <div  className="panel panel-default" >
       <div className="panel-heading">{item.productName} <br></br> <p>suplied by {this.props.name}</p></div>
-      <div className="panel-body"><img src={item.productImg} className="img-responsive" /></div>
+      <div className="panel-body"><img src={item.productImg} className="img-responsive" width="300" height="300" /></div>
       <div className="panel-footer">{item.productDisc}</div>
 
       <div className="panel-footer">
@@ -141,7 +156,7 @@ render(){
     <div className="col-sm-4"> 
     <div className="panel panel-default">
     <div className="panel-heading">Recycled Wood</div>
-    <div className="panel-body"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLiQaAbfJDabEWFbP7Epq296-dWysYGbgildhRX8b5-zT1-1c_" className="img-responsive" /></div>
+    <div className="panel-body"><img width="300" height="300"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLiQaAbfJDabEWFbP7Epq296-dWysYGbgildhRX8b5-zT1-1c_" className="img-responsive" /></div>
     <div className="panel-footer">Buy it Now</div>
     </div>
     </div>
@@ -151,12 +166,9 @@ render(){
     <div className="panel-body"><img src="http://www.igreenspot.com/wp-content/uploads/janson-and-company-eco-products2.jpg" className="img-responsive" /></div>
     <div className="panel-footer">Buy it Now</div>
     <div className="panel-footer"><button>Buy</button></div>
-
-    </div>
     </div>
     </div>
 
-    <div className="row">
     <div className="col-sm-4">
     <div className="panel panel-default">
     <div className="panel-heading">100% Plastic</div>
