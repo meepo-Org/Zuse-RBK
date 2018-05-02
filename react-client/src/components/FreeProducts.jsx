@@ -71,7 +71,6 @@ class FreeProducts extends Component {
         name:this.props.name,
       },
       success: (data) => {
-
         this.setState({
           message:data,
           showInbox:!this.state.showInbox
@@ -89,7 +88,6 @@ class FreeProducts extends Component {
       },
       success: (data) => {
        this.props.rerender()
-
      }
    });
 
@@ -110,7 +108,7 @@ class FreeProducts extends Component {
      {return (
        <div>
        <center>
-       <button id="signinbutton" onClick={this.recieveMessage}>📩inbox</button>     
+       <button id="signinbutton" onClick={this.recieveMessage}>📩inbox</button> 
        <table id='tab'>
        <tr>
        <th>

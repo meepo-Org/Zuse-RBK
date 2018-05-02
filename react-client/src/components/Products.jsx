@@ -10,8 +10,7 @@ class Products extends Component {
      productName:'',
      productDisc:'',
      productImg : '' ,
-     products: [] , 
-     check:false
+     products: [] 
    }
    this.onChange = this.onChange.bind(this);
    this.itemEnter = this.itemEnter.bind(this);
@@ -52,24 +51,26 @@ onChange(e){
 render(){
   return (
 
-    <div>
+    <div className="prod">
 
 
-    <div className = "container">
+    <div className = "container" >
     <input type="text" name="productName" placeholder="Item Name" value={this.state.itemName} onChange={this.onChange}/>
     <input type="text" name="productDisc" placeholder="Item Discription" value={this.state.itemDisc} onChange={this.onChange}/>
-    <button id="signinbutton" onClick={()=> this.itemEnter(this.state.productName,this.state.productDisc)}>ADD</button>
+    <input type="text" value={this.state.productImg} name="productImg" onChange={this.onChange} placeholder="enter image URL here"></input>
+    <button id="signinbutton" onClick={()=> this.itemEnter(this.state.productName,this.state.productDisc , this.state.productImg)}>ADD</button>
 
     </div>
-    <div className="container">    
+    <div className="container" >    
     <div className="row">
           { this.state.products.map(item =>
               
     <div className="col-sm-4">
-    <div  className="panel panel-default">
-    <div className="panel-heading">{item.productName}</div>
-    <div className="panel-body"><img src="https://img.edilportale.com/product-thumbs/b_RADIUS-Recycle-Bin-Green-Furniture-Concept-231771-rel9f4d1dd9.jpg" className="img-responsive" /></div>
+    <div  className="panel panel-default" >
+    <div className="panel-heading">{item.productName} <br></br> <p>suplied by {this.props.name}</p></div>
+    <div className="panel-body"><img src={item.productImg} className="img-responsive" /></div>
     <div className="panel-footer">{item.productDisc}</div>
+    <div className="panel-footer"><button className='btn'>Buy</button></div>
     </div>
     </div>
      )}
@@ -80,6 +81,7 @@ render(){
     <div className="panel-heading">Recycled Wood</div>
     <div className="panel-body"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLiQaAbfJDabEWFbP7Epq296-dWysYGbgildhRX8b5-zT1-1c_" className="img-responsive" /></div>
     <div className="panel-footer">Buy it Now</div>
+    <div className="panel-footer"><button className='btn'>Buy</button></div>
     </div>
     </div>
     <div className="col-sm-4"> 
@@ -87,6 +89,8 @@ render(){
     <div className="panel-heading">Recycled Wood</div>
     <div className="panel-body"><img src="http://www.igreenspot.com/wp-content/uploads/janson-and-company-eco-products2.jpg" className="img-responsive" /></div>
     <div className="panel-footer">Buy it Now</div>
+    <div className="panel-footer"><button>Buy</button></div>
+
     </div>
     </div>
     </div>
