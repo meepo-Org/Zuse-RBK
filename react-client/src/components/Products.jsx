@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
-
+import {
+  Route,
+  Link,
+  Switch,
+  browserHistory,
+  BrowserRouter as Router
+} from "react-router-dom";
+import {Well , Modal , Button  ,Popover , Tooltip , OverlayTrigger} from "react-bootstrap"
+import Paid from './Paid.jsx';
 
 class Products extends Component {
   constructor(props) {
@@ -10,8 +18,13 @@ class Products extends Component {
      productName:'',
      productDisc:'',
      productImg : '' ,
-     products: [] 
+     products: [] ,
+     show: false
+
    }
+   this.handleShow = this.handleShow.bind(this);
+   this.handleClose = this.handleClose.bind(this);
+
    this.onChange = this.onChange.bind(this);
    this.itemEnter = this.itemEnter.bind(this);
    // this.handleLoad = this.handleLoad.bind(this);
@@ -26,6 +39,15 @@ class Products extends Component {
       });
      console.log("this prps productjsx",this.props)
  }
+ handleClose() {
+  this.setState({ show: false });
+}
+
+handleShow() {
+  this.setState({ show: true });
+}
+
+
 
  itemEnter(productName , productDisc , productImg) {
   console.log(this.this.props)
@@ -44,16 +66,16 @@ class Products extends Component {
     if(data===""){
      alert("This Email is already taken, Try another one")
    }
-  }
-      });
-      $.ajax({ 
-        type:'GET',
-        url: '/Products',
-        success: (data) => {
+ }
+});
+  $.ajax({ 
+    type:'GET',
+    url: '/Products',
+    success: (data) => {
       this.setState({products:data});
-          
-        }
-      });
+
+    }
+  });
 }
 onChange(e){
   this.setState({
@@ -62,42 +84,91 @@ onChange(e){
 }
 
 render(){
+      const popover = (
+      <Popover id="modal-popover" title="popover">
+        very popover. such engagement
+      </Popover>
+    );
+    const tooltip = <Tooltip id="modal-tooltip">wow.</Tooltip>;
+
+
   return (
 
-    <div className="prod">
-
+    <div >
   {this.props.name ?
 
+   
+  
 
-    <div className = "container" >
-    <input type="text" name="productName" placeholder="Item Name" value={this.state.itemName} onChange={this.onChange}/>
-    <input type="text" name="productDisc" placeholder="Item Discription" value={this.state.itemDisc} onChange={this.onChange}/>
-    <input type="text" value={this.state.productImg} name="productImg" onChange={this.onChange} placeholder="enter image URL here"></input>
-    <button id="signinbutton" onClick={()=> this.itemEnter(this.state.productName,this.state.productDisc , this.state.productImg)}>ADD</button>
+    
 
+    <div className = "container">
+    <div className='row'>
+    <Well>
+    <div className='col-sm-4 input-group'>
+    <input className='form-control' type="text" name="productName" placeholder="Item Name" value={this.state.itemName} onChange={this.onChange}/>
+    </div>
+      
+    <div className='col-sm-4 input-group'>
+
+    <input className='form-control' type="text" name="productDisc" placeholder="Item Discription" value={this.state.itemDisc} onChange={this.onChange}/>
+    </div>
+    <div className='col-sm-4 input-group'>
+    
+    <input className='form-control' type="text" value={this.state.productImg} name="productImg" onChange={this.onChange} placeholder="enter image URL here"></input>
+    </div>
+    <button className='btn ' onClick={()=> this.itemEnter(this.state.productName,this.state.productDisc , this.state.productImg)}>ADD</button>
+    </Well>
+    </div>
     </div>
     : null}
-    <div className="container" >    
+
+     <Modal show={this.state.show} onHide={this.handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Payment</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <h4>Text in a modal</h4>
+            <Well>
+              <div className="container">
+                 Visa Information
+
+
+              </div>
+            </Well>
+            <hr />
+
+            <h4>Overflowing text to show scroll behavior</h4>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.handleClose}>Pay</Button>
+          </Modal.Footer>
+        </Modal>
+
+   <div className="container" >    
     <div className="row">
-          { this.state.products.map(item =>
-              
-    <div className="col-sm-4">
-    <div  className="panel panel-default" >
-    <div className="panel-heading">{item.productName} <br></br> <p>suplied by {item.name}</p></div>
-    <div className="panel-body"><img src={item.productImg} className="img-responsive" /></div>
-    <div className="panel-footer">{item.productDisc}</div>
-    <div className="panel-footer"><button className='btn'>Buy</button></div>
-    </div>
-    </div>
-     )}
+    { this.state.products.map(item =>
+
+      <div className="col-sm-4">
+      <div  className="panel panel-default" >
+      <div className="panel-heading">{item.productName} <br></br> <p>suplied by {item.name}</p></div>
+      <div className="panel-body"><img src={item.productImg} className="img-responsive" width="300" height="300" /></div>
+      <div className="panel-footer">{item.productDisc}</div>
+
+      <div className="panel-footer">
+      <Button bsStyle="primary" className='btn' onClick={this.handleShow}> Buy </Button>
+      </div>
+      </div>
+      </div>
+      )}
+
     
-   
+
     <div className="col-sm-4"> 
     <div className="panel panel-default">
     <div className="panel-heading">Recycled Wood</div>
-    <div className="panel-body"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLiQaAbfJDabEWFbP7Epq296-dWysYGbgildhRX8b5-zT1-1c_" className="img-responsive" /></div>
+    <div className="panel-body"><img width="300" height="300"  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLiQaAbfJDabEWFbP7Epq296-dWysYGbgildhRX8b5-zT1-1c_" className="img-responsive" /></div>
     <div className="panel-footer">Buy it Now</div>
-    <div className="panel-footer"><button className='btn'>Buy</button></div>
     </div>
     </div>
     <div className="col-sm-4"> 
@@ -106,12 +177,9 @@ render(){
     <div className="panel-body"><img src="http://www.igreenspot.com/wp-content/uploads/janson-and-company-eco-products2.jpg" className="img-responsive" /></div>
     <div className="panel-footer">Buy it Now</div>
     <div className="panel-footer"><button>Buy</button></div>
-
-    </div>
     </div>
     </div>
 
-    <div className="row">
     <div className="col-sm-4">
     <div className="panel panel-default">
     <div className="panel-heading">100% Plastic</div>
@@ -136,6 +204,7 @@ render(){
     </div>
     </div>
     </div>
+
     )}
 }
 
