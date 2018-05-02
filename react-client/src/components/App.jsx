@@ -20,6 +20,7 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = { 
+      products:"",
 //The code will depend on the data value which will be set through successful ajax to decide what to render.
 dataa:"",
 showAboutUsComponent:false,
@@ -39,6 +40,14 @@ showSignup() {
  });
 }
 showNav(e){
+        $.ajax({ 
+        type:'GET',
+        url: '/Products',
+        success: (data) => {
+      this.setState({products:data});
+          
+        }
+      });
   this.setState({
     showAboutUsComponent:false,
     showProductsComponent:false,

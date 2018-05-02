@@ -14,7 +14,17 @@ class Products extends Component {
    }
    this.onChange = this.onChange.bind(this);
    this.itemEnter = this.itemEnter.bind(this);
+   // this.handleLoad = this.handleLoad.bind(this);
+     $.ajax({ 
+        type:'GET',
+        url: '/Products',
+        success: (data) => {
+      this.setState({products:data});
+          
+        }
+      });
  }
+
  itemEnter(productName , productDisc , productImg) {
   console.log(this.state)
   $.ajax({
@@ -67,7 +77,7 @@ render(){
               
     <div className="col-sm-4">
     <div  className="panel panel-default" >
-    <div className="panel-heading">{item.productName} <br></br> <p>suplied by {this.props.name}</p></div>
+    <div className="panel-heading">{item.productName} <br></br> <p>suplied by {item.name}</p></div>
     <div className="panel-body"><img src={item.productImg} className="img-responsive" /></div>
     <div className="panel-footer">{item.productDisc}</div>
     <div className="panel-footer"><button className='btn'>Buy</button></div>
