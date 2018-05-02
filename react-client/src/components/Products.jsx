@@ -15,6 +15,7 @@ class Products extends Component {
    this.onChange = this.onChange.bind(this);
    this.itemEnter = this.itemEnter.bind(this);
    // this.handleLoad = this.handleLoad.bind(this);
+
      $.ajax({ 
         type:'GET',
         url: '/Products',
@@ -23,10 +24,11 @@ class Products extends Component {
           
         }
       });
+     console.log("this prps productjsx",this.props)
  }
 
  itemEnter(productName , productDisc , productImg) {
-  console.log(this.state)
+ // console.log(this.props)
   $.ajax({
    url: '/Products',
    type: 'POST',
@@ -34,7 +36,8 @@ class Products extends Component {
     productName:productName,
     productDisc:productDisc,
     productImg : productImg,
-    name:this.props.name
+    name:this.props.name,
+    userType:this.props.userType
   },
   success: (data) => {
     this.setState({data:data})
@@ -53,6 +56,8 @@ class Products extends Component {
       });
 }
 onChange(e){
+     console.log("this prps productjsx",this.props)
+  
   this.setState({
    [e.target.name]: e.target.value 
  });
@@ -63,6 +68,8 @@ render(){
 
     <div className="prod">
 
+  {this.props.name  ?
+
 
     <div className = "container" >
     <input type="text" name="productName" placeholder="Item Name" value={this.state.itemName} onChange={this.onChange}/>
@@ -71,6 +78,7 @@ render(){
     <button id="signinbutton" onClick={()=> this.itemEnter(this.state.productName,this.state.productDisc , this.state.productImg)}>ADD</button>
 
     </div>
+    : null}
     <div className="container" >    
     <div className="row">
           { this.state.products.map(item =>

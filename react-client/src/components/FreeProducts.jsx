@@ -41,6 +41,7 @@ class FreeProducts extends Component {
         select:select,
         post:post,
         name:this.props.name,
+        userType:this.props.userType,
         stuffImg: stuffImg,
         prodName: prodName,
         prodOwner: this.props.name

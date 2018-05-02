@@ -94,7 +94,7 @@ render(){
     
     <div className="content">
     <Route path="/Home" render={()=><Home extraa={this.state.extra} name={this.props.name}/> } />
-    <Route path="/Products" render={()=><Products extraa={this.state.extra} name={this.props.name}/> } />
+    <Route path="/Products" render={()=><Products extraa={this.state.extra} name={this.props.name} userType={this.props.userType}/> } />
     <Route path="/Profile" render={()=><Profile extraa={this.state.extra} name={this.props.name}/> } />
     <Route path="/FreeProducts" render={()=><FreeProducts name={this.props.name} userPosts={this.state.myposts} rerender={this.submit}/> } />
     
