@@ -41,6 +41,7 @@ class FreeProducts extends Component {
         select:select,
         post:post,
         name:this.props.name,
+        userType:this.props.userType,
         stuffImg: stuffImg,
         prodName: prodName,
         prodOwner: this.props.name
@@ -75,7 +76,6 @@ class FreeProducts extends Component {
         name:this.props.name,
       },
       success: (data) => {
-
         this.setState({
           message:data,
           showInbox:!this.state.showInbox
@@ -93,7 +93,6 @@ class FreeProducts extends Component {
       },
       success: (data) => {
        this.props.rerender()
-
      }
    });
 
@@ -114,7 +113,7 @@ class FreeProducts extends Component {
      {return (
        <div>
        <center>
-       <button id="signinbutton" onClick={this.recieveMessage}>📩inbox</button>     
+       <button id="signinbutton" onClick={this.recieveMessage}>📩inbox</button> 
        <table id='tab'>
        <tr>
        <th>
@@ -167,17 +166,20 @@ class FreeProducts extends Component {
        <h1>My Inventory</h1> </center>
        <div className="container" id ='table2'>  
 
-       <div> 
-       {this.props.extraa.map(item => 
+       <div className="container"> 
+       {this.props.userPosts.map(item => 
          <div> 
          <center>  
-         <div>  
-           <h1>{item.select}</h1>  
-           <h3>Product Name: {item.prodName}</h3>  
-           <pre className="pre"><b>{item.post}</b></pre>
-           <img src={item.stuffImg} width="200" height="200"></img>
-           <h2 onClick={()=> this.showmessagebox(item.name,item.post)} >Supplied By: {item.name}</h2>
-         </div>
+         <h2>Product Type: {item.select}</h2>
+         <h3>Product Name: {item.prodName}</h3>
+         <pre className="pre">{item.post}</pre>
+         <h4>Supplied By: {this.props.name}</h4>
+         <img src={item.stuffImg} width="200" height="200"></img>
+         <button onClick={() => alert("absherr :)")}>I want to get this product</button>
+         <button onClick={()=> this.deletepost(item._id)}>🗑 delete From Home</button>
+         <br></br>
+         <br></br>
+         <br></br>
          </center>
          </div>
 
