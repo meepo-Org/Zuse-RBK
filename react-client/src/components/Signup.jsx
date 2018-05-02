@@ -18,7 +18,7 @@ class Signup extends Component {
       userName:"",
       passWord:"",
       Email:"",
-      userType:"normal",
+      userType:"",
       location:""
     },
     data:"" 
@@ -28,7 +28,6 @@ class Signup extends Component {
 }
 
 onChange (e) {
-  console.log('e value ',e.target.value)
  var states = this.state.states;
  var name = e.target.name;
  var value = e.target.value;
@@ -37,7 +36,6 @@ onChange (e) {
 }
 
 Signup() {
-
  
  $.ajax({
    url: '/Signup',
@@ -59,7 +57,7 @@ render() {
       return (
         <Router>
         
-        <Route path="/Login" component={Login}/>
+        <Route path="/Login" component={Login} />
         
         </Router>
         )
@@ -71,7 +69,7 @@ render() {
        <div id='Signup'>
        <h1 style={{color:'white'}}>Sign up</h1>
        <br></br>
-      <select id='Signupinput4' type="text" name="userType" value={this.state.userType}  onChange={this.onChange}>
+      <select id='Signupinput4' type="text" name="userType"  onChange={this.onChange}>
       <option value="normal" selected="selected">normal</option>
       <option value="supplier">supplier</option>
       </select><br/><br/>
