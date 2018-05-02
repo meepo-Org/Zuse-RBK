@@ -15,7 +15,9 @@ class FreeProducts extends Component {
       content:'',
       message:[],
       showInbox:false ,
-      stuffImg: ''
+      stuffImg: '',
+      prodName: '',
+      prodOwner: ''
     };
 
     this.submit=this.submit.bind(this);
@@ -31,7 +33,7 @@ class FreeProducts extends Component {
    });
   }
 // you can either add add not used stuff post or recycling idea
-  submit(select,post, stuffImg) {
+  submit(select,post, stuffImg, prodName) {
     $.ajax({ 
       type:'POST',
       url: '/FreeProducts',
@@ -39,7 +41,9 @@ class FreeProducts extends Component {
         select:select,
         post:post,
         name:this.props.name,
-        stuffImg: stuffImg
+        stuffImg: stuffImg,
+        prodName: prodName,
+        prodOwner: this.props.name
       },
       success: (data) => {
           // whenever something changed we need to rerender the whole array.
@@ -123,14 +127,15 @@ class FreeProducts extends Component {
        </select>
        <br></br>
        <br></br>
-
+       <input type="text" value={this.state.prodName} name="prodName" onChange={this.onChange} placeholder="Product Name"></input>
+       <br></br>
        <textarea id='AddSuggesttextarea' name="post" placeholder="post" value={this.state.post} onChange={this.onChange} rows="4" cols="50">
        </textarea>
        <br></br>
        <br></br>
 
        <input type="text" value={this.state.stuffImg} name="stuffImg" onChange={this.onChange} placeholder="enter image URL here"></input>
-       <button id="signinbutton" onClick={()=> this.submit(this.state.select,this.state.post, this.state.stuffImg)}>post</button>
+       <button id="signinbutton" onClick={()=> this.submit(this.state.select,this.state.post, this.state.stuffImg, this.state.prodName)}>post</button>
        </div>
        </th>
        <th>
@@ -164,9 +169,12 @@ class FreeProducts extends Component {
        {this.props.userPosts.map(item => 
          <div> 
          <center>  
-         <h2>{item.select}</h2>
+         <h2>Product Type: {item.select}</h2>
+         <h3>Product Name: {item.prodName}</h3>
          <pre className="pre">{item.post}</pre>
+         <h4>Supplied By: {this.props.name}</h4>
          <img src={item.stuffImg} width="200" height="200"></img>
+         <button onClick={() => alert("absherr :)")}>I want to get this product</button>
          <button onClick={()=> this.deletepost(item._id)}>🗑 delete From Home</button>
          <br></br>
          <br></br>

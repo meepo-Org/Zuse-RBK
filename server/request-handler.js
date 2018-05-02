@@ -71,15 +71,21 @@ exports.signinUser = function(req, res) {
 
 
 exports.Stuffsave = function(req, res) {
+  //console.log('req bodyy',req.body)
   var name=req.body.name;
   var select=req.body.select;
   var post=req.body.post;
   var stuffImg = req.body.stuffImg;
+  var prodName = req.body.prodName;
+  var prodOwner = req.body.prodOwner;
+
   var newstuff = new Stuff({
     name: name,
     select: select,
     post:post,
-    stuffImg: stuffImg
+    stuffImg: stuffImg,
+    prodName: prodName,
+    prodOwner: prodOwner
   });
 
   newstuff.save(function(err,data) {
@@ -93,6 +99,7 @@ exports.Stuffsave = function(req, res) {
   }
 })
 }
+
 exports.deletePost= function(req, res) {
   Stuff.remove({_id:req.body.id},function(err,data){
    if(err){

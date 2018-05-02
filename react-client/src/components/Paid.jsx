@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import $ from 'jquery';
 import {Well} from "react-bootstrap"
 
-class Profile extends Component {
+class Paid extends Component {
   constructor(props) {
    super(props);
    this.state = {
@@ -28,4 +28,4 @@ class Profile extends Component {
 }
 }
 
-export default Profile;   
+export default Paid;   

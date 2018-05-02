@@ -8,7 +8,7 @@ import {
   browserHistory,
   BrowserRouter as Router
 } from "react-router-dom";
-import Paid from './Paid.jsx'
+import Paid from './Paid.jsx';
 
 class Products extends Component {
   constructor(props) {
@@ -17,11 +17,22 @@ class Products extends Component {
      productName:'',
      productDisc:'',
      productImg : '' ,
-     products: [] 
+     products: [] , 
+     data : ''
    }
    this.onChange = this.onChange.bind(this);
    this.itemEnter = this.itemEnter.bind(this);
+     $.ajax({ 
+        type:'GET',
+        url: '/Products',
+        success: (data) => {
+      this.setState({products:data});
+          
+        }
+      });
  }
+
+
  itemEnter(productName , productDisc , productImg) {
   console.log(this.state)
   $.ajax({
@@ -56,6 +67,17 @@ onChange(e){
 }
 
 render(){
+     if(this.state.data!==""){
+    return (
+        <Router>
+
+    <Route path="/paid" render={()=><Paid />}/>
+
+    </Router>
+  
+      )
+  }else{
+
 
   return (
 
@@ -69,12 +91,7 @@ render(){
     <button id="signinbutton" onClick={()=> this.itemEnter(this.state.productName,this.state.productDisc , this.state.productImg)}>ADD</button>
 
     </div>
-    <Router>
 
-    <Route path="/paid" render={()=><Paid name={this.state.productName} />}/>
-
-    </Router>
-  
 
 
 
@@ -92,12 +109,13 @@ render(){
 
       <div className="panel-footer">
         <Router>
-    <Link to="/paid"><button id="signinbutton" className='btn' >Buy</button></Link>
+    <Link to="/paid"><button id="signinbutton" className='btn ' >Buy</button></Link>
     </Router>
       </div>
       </div>
       </div>
       )}
+
     
 
     <div className="col-sm-4"> 
@@ -148,6 +166,8 @@ render(){
     </div>
     </div>
     )}
+  }
+
 }
 
 
