@@ -8,6 +8,7 @@ import {
   browserHistory,
   BrowserRouter as Router
 } from "react-router-dom";
+import {Well , Modal , Button  ,Popover , Tooltip , OverlayTrigger} from "react-bootstrap"
 import Paid from './Paid.jsx';
 
 class Products extends Component {
@@ -17,23 +18,34 @@ class Products extends Component {
      productName:'',
      productDisc:'',
      productImg : '' ,
-     products: [] , 
-     data : ''
+     products: [] ,
+     show: false
+
    }
+   this.handleShow = this.handleShow.bind(this);
+   this.handleClose = this.handleClose.bind(this);
+
    this.onChange = this.onChange.bind(this);
    this.itemEnter = this.itemEnter.bind(this);
-     $.ajax({ 
-        type:'GET',
-        url: '/Products',
-        success: (data) => {
+   $.ajax({ 
+    type:'GET',
+    url: '/Products',
+    success: (data) => {
       this.setState({products:data});
-          
-        }
-      });
+
+    }
+  });
  }
+ handleClose() {
+  this.setState({ show: false });
+}
+
+handleShow() {
+  this.setState({ show: true });
+}
 
 
- itemEnter(productName , productDisc , productImg) {
+itemEnter(productName , productDisc , productImg) {
   console.log(this.state)
   $.ajax({
    url: '/Products',
@@ -67,22 +79,37 @@ onChange(e){
 }
 
 render(){
-     if(this.state.data!==""){
-    return (
-        <Router>
-
-    <Route path="/paid" render={()=><Paid />}/>
-
-    </Router>
-  
-      )
-  }else{
+      const popover = (
+      <Popover id="modal-popover" title="popover">
+        very popover. such engagement
+      </Popover>
+    );
+    const tooltip = <Tooltip id="modal-tooltip">wow.</Tooltip>;
 
 
   return (
 
     <div className="prod">
 
+        <Modal show={this.state.show} onHide={this.handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Payment</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <h4>Text in a modal</h4>
+            <Well>
+              <div className="container">
+                 Visa Information
+              </div>
+            </Well>
+            <hr />
+
+            <h4>Overflowing text to show scroll behavior</h4>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={this.handleClose}>Pay</Button>
+          </Modal.Footer>
+        </Modal>
 
     <div className = "container" >
     <input type="text" name="productName" placeholder="Item Name" value={this.state.itemName} onChange={this.onChange}/>
@@ -91,11 +118,6 @@ render(){
     <button id="signinbutton" onClick={()=> this.itemEnter(this.state.productName,this.state.productDisc , this.state.productImg)}>ADD</button>
 
     </div>
-
-
-
-
-
 
     <div className="container" >    
     <div className="row">
@@ -108,9 +130,7 @@ render(){
       <div className="panel-footer">{item.productDisc}</div>
 
       <div className="panel-footer">
-        <Router>
-    <Link to="/paid"><button id="signinbutton" className='btn ' >Buy</button></Link>
-    </Router>
+      <Button bsStyle="primary" className='btn' onClick={this.handleShow}> Buy </Button>
       </div>
       </div>
       </div>
@@ -123,10 +143,6 @@ render(){
     <div className="panel-heading">Recycled Wood</div>
     <div className="panel-body"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLiQaAbfJDabEWFbP7Epq296-dWysYGbgildhRX8b5-zT1-1c_" className="img-responsive" /></div>
     <div className="panel-footer">Buy it Now</div>
-    <div className="panel-footer">
-    <Router>
-    <Link to="/paid"><button id="signinbutton" className='btn' >Buy</button></Link>
-    </Router><button className='btn'>Buy</button></div>
     </div>
     </div>
     <div className="col-sm-4"> 
@@ -166,8 +182,6 @@ render(){
     </div>
     </div>
     )}
-  }
-
 }
 
 
