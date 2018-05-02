@@ -56,34 +56,23 @@ render() {
   if(this.state.dataa==""){
    return (
 
-    <div>
-    <div className="jumbotron">
-    <div className="container text-center">
-    <h1>Second Hand Store</h1>      
-    <p>Reduce.Reuse.Recycle</p>
-    </div>
-    </div>
+    <div >
+    <nav className="navbar navbar-expand-lg  navbar-default navbar-fixed-top navbar-inverse ">
+ 
 
-    <nav className=" navbar-inverse navbar navbar-default navbar-fixed-top">
-    <div className="container-fluid">
-    <div className="navbar-header">
-    <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-    <span className="icon-bar"></span>
-    <span className="icon-bar"></span>
-    <span className="icon-bar"></span>                        
-    </button>
+  <div className="collapse navbar-collapse" id="navbarSupportedContent">
 
-    </div>
-    <div className="collapse navbar-collapse" id="myNavbar">
-    <ul className="nav navbar-nav">
+    <ul className="navbar-nav mr-auto nav ">
     <li>  <a className="navbar-brand" href="#"name="showMainComponent" onClick={this.showNav}>Main</a></li>
     <li ><a href='#' name="showAboutUsComponent" onClick={this.showNav}>AboutUs</a></li>
 
     <li><a href="#" name="showProductsComponent" onClick={this.showNav}>Products</a></li>
 
     <li><a href="#" name="showContactComponent" onClick={this.showNav}>Contact</a></li>
+      
     </ul>
-  {/*Router is needed so it can route to different components depending on the link(ex:Sign up here)the user clicked on*/} 
+    <form className="form-inline ">
+      {/*Router is needed so it can route to different components depending on the link(ex:Sign up here)the user clicked on*/} 
   <ul className="nav navbar-nav navbar-right" >
   <Router history={browserHistory}>
   <li><Link className="icon-bar"  style={{color: 'white',paddingLeft: 13,textDecoration: 'none'}}  onClick={this.showSignup} to="/Signup">Signup</Link></li>
@@ -92,10 +81,18 @@ render() {
   <Router history={browserHistory}>
   <li><Link className="text-light " onClick={this.showSignup} to="/Login" style={{color: 'white',paddingLeft: 13,textDecoration: 'none'}}>Login</Link></li>
   </Router>
+  
   </ul>
+    </form>
   </div>
-  </div>
-  </nav>
+</nav>
+
+    <div className="jumbotron">
+    <div className="container text-center">
+    <h1>TOGETHER WE WILL MAKE A CHANGE.</h1>      
+    <p>Reduce.Reuse.Recycle</p>
+    </div>
+    </div>
   {this.state.showMainComponent ? <Main/>:null}
   {this.state.showContactComponent ? <Contact/>:null}
   {this.state.showAboutUsComponent ? <AboutUs/>:null }
@@ -137,7 +134,7 @@ class Main extends Component{
      [e.target.name]: e.target.value 
    });
   }
-  //data is stored in suggest schema which is the input value in Profile.jsx
+  //data is stored in suggest schema which is the input value in FreeProducts.jsx
   submit(type) {
     $.ajax({ 
       type:'POST',
@@ -164,6 +161,7 @@ class Main extends Component{
       <label for="sel1">Material Type</label>
       <br></br>
       <br></br>
+
       <select className="form-control" id="sel1" id='select' onChange={this.onChange} value={this.state.type} name="type">
       <option value="type">type</option>
       <option value="plastic">plastic</option>

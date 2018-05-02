@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname + '/../react-client/dist'));
 
 app.post('/Signup', handler.signupUser);
-app.post('/Stuff', handler.Stuffsave);
+app.post('/FreeProducts', handler.Stuffsave);
 app.post('/Suggest', handler.addSuggest);
 app.post('/suggestions', handler.showSuggest);
 app.put('/SuggestionList',handler.updateLikes )
@@ -21,7 +21,8 @@ app.post('/Login', handler.signinUser);
 app.get('/Home', handler.home);
 app.post('/Message',handler.sendMessage)
 app.post('/inbox',handler.message);
-app.post('/Product', handler.addProduct)
+app.post('/Products', handler.addProduct)
+app.get('/Products', handler.getProduct)
 
 app.get('/', function (req, res) {
    res.send("");

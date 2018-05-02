@@ -4,7 +4,8 @@ var db = require('./config');
 var stuff = mongoose.Schema({
 	name: { type : String, required : true },
 	select: { type : String, required : true },
-	post:{ type : String, required : true }
+	post:{ type : String, required : true },
+	stuffImg: { type : String, required : true }
 });
 
 

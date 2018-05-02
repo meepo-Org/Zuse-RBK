@@ -1,68 +1,114 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
 import $ from 'jquery';
+import {
+  Route,
+  Link,
+  Switch,
+  browserHistory,
+  BrowserRouter as Router
+} from "react-router-dom";
+import Paid from './Paid.jsx'
 
 class Products extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        
-    }
-    this.onChange = this.onChange.bind(this);
-    this.itemEnter = this.itemEnter.bind(this);
-  }
-  itemEnter() {
-    console.log(this.state.item)
-    $.ajax({
-     url: '/Product',
-     type: 'POST',
-     data: this.state,
-     success: (data) => {
-      this.setState({data:data})
-      if(data===""){
-       alert("This Email is already taken, Try another one")
-     }
+     productName:'',
+     productDisc:'',
+     productImg : '' ,
+     products: [] 
    }
- });
-  }
-  onChange(e){
-   // var item = this.state.item;
-   // var name = e.target.name;
-   // var value = e.target.value;
-   // item.name = value;
-   // this.setState({item}); 
-    this.setState({
-     [e.target.name]: e.target.value 
-   });
-  
+   this.onChange = this.onChange.bind(this);
+   this.itemEnter = this.itemEnter.bind(this);
  }
- render(){
+ itemEnter(productName , productDisc , productImg) {
+  console.log(this.state)
+  $.ajax({
+   url: '/Products',
+   type: 'POST',
+   data:{
+    productName:productName,
+    productDisc:productDisc,
+    productImg : productImg,
+    name:this.props.name
+  },
+  success: (data) => {
+    this.setState({data:data})
+    if(data===""){
+     alert("This Email is already taken, Try another one")
+   }
+ }
+});
+  $.ajax({ 
+    type:'GET',
+    url: '/Products',
+    success: (data) => {
+      this.setState({products:data});
+
+    }
+  });
+}
+onChange(e){
+  this.setState({
+   [e.target.name]: e.target.value 
+ });
+}
+
+render(){
 
   return (
 
-    <div>
-    <div className = "container">
-    <input type="text" name="itemName" placeholder="Item Name" value={this.state.itemName} onChange={this.onChange}/>
-    <input type="text" name="itemDisc" placeholder="Item Discription" value={this.state.itemDisc} onChange={this.onChange}/>
-    <button onClick={this.itemEnter} >ADD</button>
+    <div className="prod">
+
+
+    <div className = "container" >
+    <input type="text" name="productName" placeholder="Item Name" value={this.state.itemName} onChange={this.onChange}/>
+    <input type="text" name="productDisc" placeholder="Item Discription" value={this.state.itemDisc} onChange={this.onChange}/>
+    <input type="text" value={this.state.productImg} name="productImg" onChange={this.onChange} placeholder="enter image URL here"></input>
+    <button id="signinbutton" onClick={()=> this.itemEnter(this.state.productName,this.state.productDisc , this.state.productImg)}>ADD</button>
 
     </div>
+    <Router>
+
+    <Route path="/paid" render={()=><Paid name={this.state.productName} />}/>
+
+    </Router>
+  
 
 
-    <div className="container">    
+
+
+
+    <div className="container" >    
     <div className="row">
-    <div className="col-sm-4">
-    <div  className="panel panel-default">
-    <div className="panel-heading">100% Plastic</div>
-    <div className="panel-body"><img src="https://img.edilportale.com/product-thumbs/b_RADIUS-Recycle-Bin-Green-Furniture-Concept-231771-rel9f4d1dd9.jpg" className="img-responsive" /></div>
-    <div className="panel-footer">Buy it Now</div>
-    </div>
-    </div>
+    { this.state.products.map(item =>
+
+      <div className="col-sm-4">
+      <div  className="panel panel-default" >
+      <div className="panel-heading">{item.productName} <br></br> <p>suplied by {this.props.name}</p></div>
+      <div className="panel-body"><img src={item.productImg} className="img-responsive" /></div>
+      <div className="panel-footer">{item.productDisc}</div>
+
+      <div className="panel-footer">
+        <Router>
+    <Link to="/paid"><button id="signinbutton" className='btn' >Buy</button></Link>
+    </Router>
+      </div>
+      </div>
+      </div>
+      )}
+    
+
     <div className="col-sm-4"> 
     <div className="panel panel-default">
     <div className="panel-heading">Recycled Wood</div>
     <div className="panel-body"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSLiQaAbfJDabEWFbP7Epq296-dWysYGbgildhRX8b5-zT1-1c_" className="img-responsive" /></div>
     <div className="panel-footer">Buy it Now</div>
+    <div className="panel-footer">
+    <Router>
+    <Link to="/paid"><button id="signinbutton" className='btn' >Buy</button></Link>
+    </Router><button className='btn'>Buy</button></div>
     </div>
     </div>
     <div className="col-sm-4"> 
@@ -70,6 +116,8 @@ class Products extends Component {
     <div className="panel-heading">Recycled Wood</div>
     <div className="panel-body"><img src="http://www.igreenspot.com/wp-content/uploads/janson-and-company-eco-products2.jpg" className="img-responsive" /></div>
     <div className="panel-footer">Buy it Now</div>
+    <div className="panel-footer"><button>Buy</button></div>
+
     </div>
     </div>
     </div>
