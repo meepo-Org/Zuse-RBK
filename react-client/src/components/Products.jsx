@@ -19,8 +19,9 @@ class Products extends Component {
      productDisc:'',
      productImg : '' ,
      products: [] ,
-     show: false
-
+     show: false , 
+     to :'',
+     input : ''
    }
    this.handleShow = this.handleShow.bind(this);
    this.handleClose = this.handleClose.bind(this);
@@ -37,20 +38,34 @@ class Products extends Component {
           
         }
       });
-     console.log("this prps productjsx",this.props)
  }
- handleClose() {
+ handleClose(content) {
   this.setState({ show: false });
+
+    $.ajax({ 
+    type:'POST',
+    url: '/Message',
+    data:{
+     From:this.props.name,
+     to:this.state.to,
+     content:content
+   },
+   success: (data) => {
+     console.log(data)
+    this.showmessagebox("","");
+    // this.setState({input:''});
+    // alert("Your message is sent");
+  },
+});
 }
 
-handleShow() {
-  this.setState({ show: true });
+handleShow(to  , pro) {
+  this.setState({ show: true , to : to , productName : pro});
 }
 
 
 
  itemEnter(productName , productDisc , productImg) {
-  console.log(this.this.props)
   $.ajax({
    url: '/Products',
    type: 'POST',
@@ -91,17 +106,11 @@ render(){
     );
     const tooltip = <Tooltip id="modal-tooltip">wow.</Tooltip>;
 
-
+    this.state.input = this.props.name + " bought form you " +this.state.productName
   return (
 
     <div >
   {this.props.name ?
-
-   
-  
-
-    
-
     <div className = "container">
     <div className='row'>
     <Well>
@@ -132,8 +141,6 @@ render(){
             <Well>
               <div className="container">
                  Visa Information
-
-
               </div>
             </Well>
             <hr />
@@ -141,7 +148,7 @@ render(){
             <h4>Overflowing text to show scroll behavior</h4>
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.handleClose}>Pay</Button>
+            <Button onClick={()=>this.handleClose(this.state.input)}>Pay</Button>
           </Modal.Footer>
         </Modal>
 
@@ -156,7 +163,7 @@ render(){
       <div className="panel-footer">{item.productDisc}</div>
 
       <div className="panel-footer">
-      <Button bsStyle="primary" className='btn' onClick={this.handleShow}> Buy </Button>
+      <Button bsStyle="primary" className='btn' onClick={()=> this.handleShow(item.name , item.productName)} > Buy </Button>
       </div>
       </div>
       </div>
