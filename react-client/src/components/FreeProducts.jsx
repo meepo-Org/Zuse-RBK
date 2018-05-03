@@ -17,14 +17,17 @@ class FreeProducts extends Component {
       showInbox:false ,
       stuffImg: '',
       prodName: '',
-      prodOwner: ''
+      prodOwner: '',
+      senderLocation: ''
     };
-
+    //var location1 = '';
+    //this.location1 = this.location1.bind(this);
     this.submit=this.submit.bind(this);
     this.onChange=this.onChange.bind(this);
     this.addsuggest=this.addsuggest.bind(this);
     this.recieveMessage=this.recieveMessage.bind(this);
     this.deletepost=this.deletepost.bind(this);
+    this.getSenderLocation = this.getSenderLocation.bind(this);
   }
 
   onChange (e) {
@@ -98,6 +101,57 @@ class FreeProducts extends Component {
    });
 
   }
+
+  showmessagebox(to,content){
+  this.setState({
+    ismessagehiddin: ! this.state.ismessagehiddin,
+    to: to,
+    content:content
+  });
+}
+
+getSenderLocation(senderName)
+{ var tmp = this;
+  $.ajax({
+    type: 'POST',
+    url: '/Sender',
+    data: {
+      userName: senderName
+    },
+    success: (data) => {
+      //console.log("Sender location ", data);
+      this.setState({
+        senderLocation: data[0].location
+      });
+    }
+  });
+
+}
+
+addMessage(to,content, location) {
+  //console.log("loccc" , this.state.senderLocation)
+  this.getSenderLocation(this.props.name);
+  var message = "From: " + this.props.name + "\n To: " + to + "\n Sender Location: " + location +
+  "\n Message Details: \n" +
+  "Product Type: " + content.select + "\n Product Name: " + content.prodName + "\n Product Description: " + content.post;
+
+
+  $.ajax({ 
+    type:'POST',
+    url: '/Message',
+    data:{
+     From:this.props.name,
+     to:to,
+     content:message
+   },
+   success: (data) => {
+     
+    //this.showmessagebox("","");
+    //this.setState({input:''});
+    alert("Your message is sent");
+  },
+});
+}
 
   render(){
    if(this.state.showInbox){
@@ -175,8 +229,20 @@ class FreeProducts extends Component {
            <h1>{item.select}</h1>  
            <h3>Product Name: {item.prodName}</h3>  
            <pre className="pre"><b>{item.post}</b></pre>
-           <img src={item.stuffImg} width="200" height="200"></img>
+           <img src={item.stuffImg} width="200" height="200"></img><br></br>
+            <button onClick={()=> this.deletepost(item._id)}>🗑 Delete this Product</button>
+            <button onClick={()=> this.addMessage(this.state.to, item)}>I want to get this Product</button> 
+
            <h2 onClick={()=> this.showmessagebox(item.name,item.post)} >Supplied By: {item.name}</h2>
+         </div>
+         <br></br>
+         <div>
+            {this.state.ismessagehiddin ? null : 
+            (this.state.content==item.post)?
+            <div>
+              <textarea id='home' onChange={this.onChange} value={this.state.input} name="input" placeholder="Enter your location here .."/>
+              <button onClick={()=> this.addMessage(this.state.to, item, this.state.input)}>send</button> 
+            </div>  :null}
          </div>
          </center>
          </div>

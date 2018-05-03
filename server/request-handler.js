@@ -251,3 +251,18 @@ exports.getProduct = function (req , res) {
   }
 })
 }
+
+exports.getSenderLocation = function(req, res){
+  console.log("req from ", req);
+  User.find({userName: req.body.userName}, function(err,data){
+    console.log("data", data);
+    if(err){
+     res.status(404).send(err);
+    }
+
+   else{
+    res.status(200).send(data);
+    console.log(data)
+    }
+  })
+}
