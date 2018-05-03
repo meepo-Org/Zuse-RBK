@@ -66,7 +66,9 @@ addMessage(to,content) {
 render(){
  return (
   <div>
-
+       
+ <div className="container" >    
+    
   { this.state.products.map(item =>
 
     <div className="col-sm-4 col-xs-12">
@@ -76,17 +78,33 @@ render(){
     <div className="panel-footer">{item.productDisc}</div>
 
     <div className="panel-footer">
-    <Button bsStyle="primary" className='btn' onClick={()=> this.handleShow(item.name , item.productName)} > Buy </Button>
+    <Button className='btn btn-success' onClick={()=> this.handleShow(item.name , item.productName)} > Buy </Button>
     </div>
     </div>
     </div>
     )}
+<Modal show={this.state.show} onHide={this.handleClose}>
+          <Modal.Header closeButton>
+            <Modal.Title>Payment</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <h4>Text in a modal</h4>
+            <Well>
+              <div className="container">
+                 Visa Information
+              </div>
+            </Well>
+            <hr />
 
+            <h4>Overflowing text to show scroll behavior</h4>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={()=>this.handleClose(this.state.input)}>Pay</Button>
+          </Modal.Footer>
+        </Modal>
   {this.props.extraa.map(item => 
    <div className="container" id ='table2'>  
    <div>  
-   <div  className="container-fluid">
-   <div className="row slideanim">
    <div className="col-sm-4 col-xs-12">
    <div className="panel panel-default text-center">
    <div className="panel-heading">
@@ -114,10 +132,9 @@ render(){
     </div> 
     </div>
     </div>
-    </div>
-    </div>
     )}
   
+    </div>
   </div>
   
 

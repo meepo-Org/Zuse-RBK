@@ -137,38 +137,48 @@ addMessage(to,content, location) {
   render(){
   return (
        <div>
-       <center>
-       <table id='tab'>
-       <tr>
-       <th>
-       <div id='profile1' className='container'>
+       
+       <div className='container '>
+       <div className='row'>
+       <div className="col-sm-6">
+       <Well>
+       <div className= 'form-group '>         
        <h1>Second Hand Stuff</h1>
-       <select id='AddSuggest' onChange={this.onChange} value={this.state.select} name="select">
+       <select className ="form-control"  onChange={this.onChange} value={this.state.select} name="select">
        <option value="type">type</option>
        <option value="plastic">plastic</option>
        <option value="clothes">clothes</option>
        <option value="wood">wood</option>
        <option value="iron">iron</option>
        </select>
+       </div>
        <br></br>
        <br></br>
-       <input type="text" value={this.state.prodName} name="prodName" onChange={this.onChange} placeholder="Product Name"></input>
+         
+        <label for="usr">Product Name :</label>
+       
+       <input className="form-control" type="text" value={this.state.prodName} name="prodName" onChange={this.onChange} placeholder="Product Name"></input>
+        <label for="usr">Image :</label>
+       
+       <input className="form-control"  type="text" value={this.state.stuffImg} name="stuffImg" onChange={this.onChange} placeholder="enter image URL here"></input>
        <br></br>
-       <textarea id='AddSuggesttextarea' name="post" placeholder="post" value={this.state.post} onChange={this.onChange} rows="4" cols="50">
+        <label for="usr">POST :</label>
+
+       <textarea className="form-control"  name="post" placeholder="post" value={this.state.post} onChange={this.onChange} rows="4" cols="50">
        </textarea>
        <br></br>
        <br></br>
 
-       <input type="text" value={this.state.stuffImg} name="stuffImg" onChange={this.onChange} placeholder="enter image URL here"></input>
-       <button id="signinbutton" onClick={()=> this.submit(this.state.select,this.state.post, this.state.stuffImg, this.state.prodName)}>post</button>
+       <button className="btn btn-success" onClick={()=> this.submit(this.state.select,this.state.post, this.state.stuffImg, this.state.prodName)}>post</button>
+       </Well>
        </div>
-       </th>
-       <th>
-       <div id='profile2' className='container'>
+       <div className="col-sm-6">
+       <Well>
 
+        <div className=' form-group '>
        <h1>Add Suggest</h1>
 
-       <select id='AddSuggest' onChange={this.onChange} value={this.state.type} name="type">
+       <select className ="form-control"  onChange={this.onChange} value={this.state.type} name="type">
        <option value="type">type</option>
        <option value="plastic">plastic</option>
        <option value="clothes">clothes</option>
@@ -177,30 +187,34 @@ addMessage(to,content, location) {
        </select>
        <br></br>
        <br></br>
-       <textarea id='AddSuggesttextarea' name="content" placeholder="content" value={this.state.content} onChange={this.onChange} rows="4" cols="50">
+        <label for="usr">Content :</label>
+
+       <textarea className="form-control" name="content" placeholder="content" value={this.state.content} onChange={this.onChange} rows="4" cols="50">
        </textarea>
        <br></br>  
        <br></br>
-       <button id="signinbutton" onClick={()=> this.addsuggest(this.state.type,this.state.content)}>suggest</button>
+       <button className="btn btn-success" onClick={()=> this.addsuggest(this.state.type,this.state.content)}>suggest</button>
        </div>
-       </th>
-       </tr>
-       </table>
-       <center>
-       <h1>My Inventory</h1> </center>
-       <div className="container" id ='table2'>  
+       </Well>
+       </div>
+       </div>
+      
+       
+       <h1>My Inventory</h1> 
+       <div className="container" >  
 
        <div> 
        {this.props.extraa.map(item => 
          <div> 
-         <center>  
+         <Well>
          <div>  
            <h1>{item.select}</h1>  
            <h3>Product Name: {item.prodName}</h3>  
            <pre className="pre"><b>{item.post}</b></pre>
            <img src={item.stuffImg} width="200" height="200"></img><br></br>
-            <button onClick={()=> this.deletepost(item._id)}>🗑 Delete this Product</button>
-            <button onClick={()=> this.addMessage(this.state.to, item, this.state.input)}>I want to get this Product</button> 
+            <button className='btn btn-info' onClick={()=> this.deletepost(item._id)}>🗑 Delete this Product</button>
+            <button className='btn btn-success' onClick={()=> this.addMessage(this.state.to, item, this.state.input)}>I want to get this Product</button> 
+
 
            <h2 onClick={()=> this.showmessagebox(item.name,item.post)} >Supplied By: {item.name}</h2>
          </div>
@@ -210,10 +224,10 @@ addMessage(to,content, location) {
             (this.state.content==item.post)?
             <div>
               <textarea id='home' onChange={this.onChange} value={this.state.input} name="input" placeholder="Enter your location here .."/>
-              <button onClick={()=> this.addMessage(this.state.to, item, this.state.input)}>send</button> 
+              <button className='btn ' onClick={()=> this.addMessage(this.state.to, item, this.state.input)}>send</button> 
             </div>  :null}
          </div>
-         </center>
+         </Well>
          </div>
 
          )}
@@ -223,8 +237,8 @@ addMessage(to,content, location) {
 
 
        </div>
+       </div>
 
-       </center>
        </div>
        )
 }

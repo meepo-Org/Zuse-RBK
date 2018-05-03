@@ -166,7 +166,7 @@ render(){
       <div className="panel-footer">{item.productDisc}</div>
 
       <div className="panel-footer">
-      <Button bsStyle="primary" className='btn' onClick={()=> this.handleShow(item.name , item.productName)} > Buy </Button>
+      <Button  className='btn btn-success' onClick={()=> this.handleShow(item.name , item.productName)} > Buy </Button>
       </div>
       </div>
       </div>

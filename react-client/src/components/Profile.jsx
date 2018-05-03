@@ -68,7 +68,7 @@ render() {
     <div>
     <center>
     <div className='container '>
-    <Well>  
+  
     <div id='message1'>
     <button className='btn'  onClick={this.recieveMessage}>📩inbox</button>
     <Textmessage data={this.state.message}/>
@@ -77,7 +77,7 @@ render() {
     </div>
     </div>
     </div>
-    </Well>
+  
     </div>
     </center>
     </div>
