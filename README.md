@@ -1,15 +1,23 @@
-[![Waffle.io - Columns and their card count](https://badge.waffle.io/meepo-Org/Zuse-RBK.svg?columns=all)](https://waffle.io/meepo-Org/Zuse-RBK)
-# ReduceRuseRecycle
->  ReduceRuseRecycle is a great optimal solution from two different sides:
+[![Waffle.io - Columns and their card count](https://waffle.io/meepo-Org/Zuse-RBK)
+# Greeno
+>  Greeno is a great optimal solution from two different sides:
 1- it gives you the oppurtinity to contribute with your suggestion and idea about recycling so all people can use your knowledge in a good way 
 2- you have the chance also to sell your extra items instead of throughing them out 
 3- all the information in this app will be provided from people to people so don't worry all of them are practical. no theories here.
+4- Greeno is extention for ReduceRuseRecycle project, so we added new feature to this project which are :-
+  1- User has two options when wanna sign up 
+    a- The first one is to regist as a normal user, so he can only see the stuff and take it as free or buy it.
+    b- The seconed one is sign up as supplier, so he can add some stuff to sell it.
+  2- we have two pages Paid-products and Free-products
+  3- user can add his location and his product image  
 
 ## Team
 
-  - __Product Owner__: Wa'ed Alshiyyab
-  - __Scrum Master__: Hanan Nouman	
-  - __Development Team Members__: Lena Salamat Yussur Alani 
+  - __Product Owner__: Shatha
+  - __Scrum Master__: Qays	
+  - __Team Leader__: Abdulhameed 
+  - __Development Team Members__: Abdullatif 
+
 
 ## Table of Contents
 
@@ -44,10 +52,6 @@ npm run react-dev
 in another terminal npm run server-dev
 in another terminal npm run react-dev 
 ```
-
-### Roadmap
-
-View the project roadmap [here](https://github.com/Zuse-RBK/Zuse-RBK/issues)
 
 
 ## Contributing
