@@ -215,6 +215,7 @@ addMessage(to,content, location) {
             <button className='btn btn-info' onClick={()=> this.deletepost(item._id)}>🗑 Delete this Product</button>
             <button className='btn btn-success' onClick={()=> this.addMessage(this.state.to, item, this.state.input)}>I want to get this Product</button> 
 
+
            <h2 onClick={()=> this.showmessagebox(item.name,item.post)} >Supplied By: {item.name}</h2>
          </div>
          <br></br>

@@ -266,3 +266,16 @@ exports.getSenderLocation = function(req, res){
     }
   })
 }
+
+exports.getUserInfo = function(req, res){
+  User.find({userName: req.body.userName}, function(err,data){
+    if(err){
+     res.status(404).send(err);
+    }
+
+   else{
+    res.status(200).send(data);
+    console.log(data)
+    }
+  })
+}
