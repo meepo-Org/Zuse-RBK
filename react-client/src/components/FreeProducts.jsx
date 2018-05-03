@@ -14,7 +14,6 @@ class FreeProducts extends Component {
       type:'',
       content:'',
       message:[],
-      showInbox:false ,
       stuffImg: '',
       prodName: '',
       prodOwner: '',
@@ -25,7 +24,6 @@ class FreeProducts extends Component {
     this.submit=this.submit.bind(this);
     this.onChange=this.onChange.bind(this);
     this.addsuggest=this.addsuggest.bind(this);
-    this.recieveMessage=this.recieveMessage.bind(this);
     this.deletepost=this.deletepost.bind(this);
     this.getSenderLocation = this.getSenderLocation.bind(this);
   }
@@ -66,23 +64,6 @@ class FreeProducts extends Component {
       },
       success: (data) => {
         alert(data)
-      },
-    });
-  }
-
-  recieveMessage() {
-    $.ajax({ 
-      type:'POST',
-      url: '/inbox',
-      data:{
-        name:this.props.name,
-      },
-      success: (data) => {
-
-        this.setState({
-          message:data,
-          showInbox:!this.state.showInbox
-        })
       },
     });
   }
@@ -154,21 +135,9 @@ addMessage(to,content, location) {
 }
 
   render(){
-   if(this.state.showInbox){
-     return (
-      <div>
-      <center>
-      <div id='message1'>
-      <button id="signinbutton" onClick={this.recieveMessage}>📩inbox</button>
-      <Textmessage data={this.state.message}/>
-      </div>
-      </center>
-      </div>
-      )}else
-     {return (
+  return (
        <div>
        <center>
-       <button id="signinbutton" onClick={this.recieveMessage}>📩inbox</button>     
        <table id='tab'>
        <tr>
        <th>
@@ -257,9 +226,9 @@ addMessage(to,content, location) {
 
        </center>
        </div>
-       )}
+       )
+}
 
-   }
  }
 
 
