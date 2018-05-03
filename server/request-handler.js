@@ -4,11 +4,8 @@ var db=require('../database-mongo/config.js');
 var User=require('../database-mongo/user.js');
 var Stuff=require('../database-mongo/stuff.js');
 var Suggest=require('../database-mongo/suggest.js');
+var Product=require('../database-mongo/product.js');
 var Message=require('../database-mongo/message.js');
-
-var bodyParser = require('body-parser');
-var cookieParser = require('cookie-parser');
-var util=require('./utility.js')
 
 exports.signupUser = function(req, res) {
   var userName = req.body['states[userName]'];
@@ -17,11 +14,9 @@ exports.signupUser = function(req, res) {
   var userType = req.body['states[userType]'];
   var location=req.body['states[location]'];
 
-  console.log(User,"user")
+  //console.log(User,"user")
 
   User.findOne({ Email: Email },function(err,found){
-
-
    if (!found ){
      var newUser = new User({
       userName: userName,
@@ -76,13 +71,21 @@ exports.signinUser = function(req, res) {
 
 
 exports.Stuffsave = function(req, res) {
+  //console.log('req bodyy',req.body)
   var name=req.body.name;
   var select=req.body.select;
   var post=req.body.post;
+  var stuffImg = req.body.stuffImg;
+  var prodName = req.body.prodName;
+  var prodOwner = req.body.prodOwner;
+
   var newstuff = new Stuff({
     name: name,
     select: select,
-    post:post
+    post:post,
+    stuffImg: stuffImg,
+    prodName: prodName,
+    prodOwner: prodOwner
   });
 
   newstuff.save(function(err,data) {
@@ -96,6 +99,7 @@ exports.Stuffsave = function(req, res) {
   }
 })
 }
+
 exports.deletePost= function(req, res) {
   Stuff.remove({_id:req.body.id},function(err,data){
    if(err){
@@ -211,24 +215,54 @@ exports.logout = function(req, res) {
 }
 
 exports.addProduct = function (req , res) {
-  console.log(req.body)
-//   var name=req.body.name;
-//   var select=req.body.select;
-//   var post=req.body.post;
-//   var newstuff = new Stuff({
-//     name: name,
-//     select: select,
-//     post:post
-//   });
+  var name=req.body.name;
+  var productName=req.body.productName;
+  var productDisc=req.body.productDisc;
+  var productImg=req.body.productImg;
 
-//   newstuff.save(function(err,data) {
-//    if(err){
-//      res.status(500).send(err);
-//    }
+  var newProduct = new Product({
+    name: name,
+    productName: productName,
+    productDisc:productDisc , 
+    productImg:productImg
+  });
 
-//    else{
-//     res.status(201).send(data);
-//     console.log('saved')
-//   }
-// })
+  newProduct.save(function(err,data) {
+   if(err){
+     res.status(500).send(err);
+   }
+
+   else{
+    res.status(201).send(data);
+    console.log('saved')
+  }
+})
+}
+
+exports.getProduct = function (req , res) {
+  Product.find({},function(err,data){
+    if(err){
+     res.status(500).send(err);
+   }
+
+   else{
+    res.status(201).send(data);
+    console.log('Product work')
+  }
+})
+}
+
+exports.getSenderLocation = function(req, res){
+  console.log("req from ", req);
+  User.find({userName: req.body.userName}, function(err,data){
+    console.log("data", data);
+    if(err){
+     res.status(404).send(err);
+    }
+
+   else{
+    res.status(200).send(data);
+    console.log(data)
+    }
+  })
 }

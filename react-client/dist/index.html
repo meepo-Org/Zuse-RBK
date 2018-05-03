@@ -1,229 +1,243 @@
 <!-- this is the main html page -->
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<head>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-<!-- Latest compiled and minified JavaScript -->
-<!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+  <!-- Latest compiled and minified JavaScript -->
+<!--   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+  <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
  -->
-<!-- <link rel="stylesheet" href="https://unpkg.com/bootstrap-material-design@4.1.1/dist/css/bootstrap-material-design.min.css" integrity="sha384-wXznGJNEXNG1NFsbm0ugrLFMQPWswR3lds2VeinahP8N0zJw9VWSopbjv2x7WCvX" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Skranji" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Black+Han+Sans" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Merienda" rel="stylesheet">
 
- -->
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <meta charset="utf-8">
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no">
-          <style >
-         .jumbotron{
-          background-image:url("https://images.pexels.com/photos/326240/pexels-photo-326240.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"); 
-          background-size: cover;
-           font-family: "Times New Roman", Georgia, serif;
-         }
-           #Contact{
-            margin-right: 50px;
-            margin-left: 50px
-           }
-            #Login{
-              margin-top:80px;
-              padding-top: 50px; 
-              height:500px;
-              width: 450px;
-               border-radius: 25px;
-              
-              background-color:#383838;
-            }
-             #Signup{
-              margin-top:80px;
-              padding-top: 50px; 
-              height:500px;
-              width: 450px;
-               border-radius: 25px;
-              
-              background-color:#383838;
-            }
-            #Link2{
-              font-family: sans-serif;
-              color: white;
-            }
-           #AboutUs{
-            margin-left: 50px;
-            margin-right: 50px;
-           }
-             
-            
-            #app{
-              height:900px;
-              width: 100%; 
-              font-family:Helvetica;
-              font-size: 20px;
-              
-            }
-            #List{
-             margin-left:30px;
-              margin-top: 30px;
-               border-radius: 25px;
-              background-color: #A8A8A8;
-               height:300px;
-              width:300px;
-              float:left;
-            }
-         
-          #AddSuggest{
-            width: 200px;
-            height:25px;
-             
-           }
-          #Signupinput1, #Signupinput2 ,#Signupinput3,#Signupinput4,#Signupinput5{
-            width: 200px;
-            height:25px;
-            background-color: #f6f0ff;
-             border-radius: 25px;
-             font-size: 15px; 
-             text-align:center;  
-          }
-          #Logininput1, #Logininput2{
-            width: 200px;
-            height:25px;
-            background-color: #f6f0ff;
-             border-radius: 25px; 
-              font-size: 15px;
-               text-align:center;       
-          }
-          #table{
-             height:100px;
-              width:100px;
-              text-align: center;
-            }
-
-          #submit{
-            background: linear-gradient(#ffffff,#d9ffb3);
-            border-radius: 5px;
-          }
-          #signupbutton{
-           width: 100px;
-            height:25px;
-           
-             border-radius: 25px; 
-             font-size:15px;  
-
-          }
-          #signinbutton{
-           width: 100px;
-            height:40px;
-            
-             border-radius: 25px; 
-             font-size:20px;  
-
-          }
-
-            #welcome{
-            height:500px;
-            width:1000px;
-            border-radius: 25px;
-            background-color: #A8A8A8;
-            padding-top: 50px;
-          }
-         
-         #homehome{
-                 margin-left:30px;
-              margin-top: 30px;
-               border-radius: 25px;
-              background-color: #A8A8A8;
-               height:300px;
-              width:300px;
-              float:left;
-              }
-
-             #profile1,#profile2{
-              margin-top:80px;
-              padding-top: 50px; 
-              height:400px;
-              border-radius: 25px;
-              text-align: center;
-             
-              width:500px;
-               font-family: "Times New Roman", Georgia, serif;
-
-             }
-              #table2{
-           /* background-color: #A8A8A8;*/
-             font-size: 30px;
-              font-family: "Times New Roman", Georgia, serif;
-            }
-            .pre{
-              font-family: "Times New Roman", Georgia, serif;
-              font-size: 120%;
-            }
-
-            #tab{
-
-              margin-top:50px;
-            }
-
-            #AddSuggesttextarea{
-            border-radius: 50px; 
-             font-size:15px;
-             text-align: center;   
-            }
-            #line{
-              font-family:bold;
-              font-size: 30px;
-            }
-            #message1{
-              border-radius: 25px;
-             
-              text-align: center;
-            }
-            #home{
-              border-radius: 10px; 
-             font-size:20px;
-             text-align: center;
-            text-align: center;
-            }
-            #home1{
-            width: 50px;
-            height:20px;
-            background-color: #f2e6d9 ;
-             border-radius: 5px;
-             font-size: 15px;
-            text-align: center;
-            }
-            #like {
-              margin-left:10px;
-              color: #ea0000;
-              outline: none;
-              background: #fff;
-              border: none;
-              font-family: 'Montserrat', sans-serif;
-              font-size: 0.8em;
-              box-shadow: 0 0 22px 4px rgba(0,0,0,0.1);
-              height: 40px;
-              width: 200px;
-              transition: box-shadow 0.3s;
-              &:hover {
-                 box-shadow: 3px 3px 22px 4px rgba(0,0,0,0.1);
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport"
+  content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <style >
+  .jumbotron{
+    color: black;
+    background-image:url("https://pre00.deviantart.net/080b/th/pre/i/2011/072/4/5/__recycle___wallpaper_by_osallivan-d3bk883.jpg"); 
+    background-size: cover;
+    font-family: 'Lobster', cursive;
+    /*font-family: 'Black Han Sans', sans-serif;*/
   }
-  #suggestionPre{
-    width:600px;
-    height:1100px;
+ #iimg{
+  border:  solid;
+   border-width: 5px;
+ }
+  .navbar{
+    font-family: 'Skranji', cursive;
   }
+  #Contact{
+    margin-right: 50px;
+    margin-left: 50px
+  }
+  #sel1{
+    font-size: 150%;
+  }
+  #Login{
+    margin-top:80px;
+    padding-top: 50px; 
+    height:500px;
+    width: 450px;
+    border-radius: 25px;
+    font-family: 'Skranji', cursive;
+    background-color:#383838;
+  }
+  #Signup{
+    margin-top:80px;
+    padding-top: 50px; 
+    height:500px;
+    width: 450px;
+    border-radius: 25px;
+    font-family: 'Skranji', cursive;
+    background-color:#383838;
+  }
+  #Link2{
+    font-family: sans-serif;
+    color: white;
+  }
+  #AboutUs{
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+
+
+  #app{
+    height:900px;
+    width: 100%; 
+    font-family:Helvetica;
+    font-size: 20px;
+
+  }
+  #List{
+   margin-left:30px;
+   margin-top: 30px;
+   border-radius: 25px;
+   background-color: #A8A8A8;
+   height:300px;
+   width:300px;
+   float:left;
+ }
+
+ #AddSuggest{
+  width: 200px;
+  height:25px;
+
+}
+#Signupinput1, #Signupinput2 ,#Signupinput3,#Signupinput4,#Signupinput5{
+  width: 200px;
+  height:25px;
+  background-color: #f6f0ff;
+  border-radius: 25px;
+  font-size: 15px; 
+  text-align:center;  
+}
+#Logininput1, #Logininput2{
+  width: 200px;
+  height:25px;
+  background-color: #f6f0ff;
+  border-radius: 25px; 
+  font-size: 15px;
+  text-align:center;       
+}
+#table{
+ height:100px;
+ width:100px;
+ text-align: center;
 }
 
-          </style>
-    
-        
-  <title>Recycling</title>
+#submit{
+  background: linear-gradient(#ffffff,#d9ffb3);
+  border-radius: 5px;
+}
+#signupbutton{
+ width: 100px;
+ height:25px;
+
+ border-radius: 25px; 
+ font-size:15px;  
+
+}
+#signinbutton{
+ width: 100px;
+ height:40px;
+
+ border-radius: 25px; 
+ font-size:20px;  
+
+}
+
+#welcome{
+  height:500px;
+  width:1000px;
+  border-radius: 25px;
+  background-color: #A8A8A8;
+  padding-top: 50px;
+}
+
+#homehome{
+ margin-left:30px;
+ margin-top: 30px;
+ border-radius: 25px;
+ background-color: #A8A8A8;
+ height:300px;
+ width:300px;
+ float:left;
+}
+
+#profile1,#profile2{
+  margin-top:80px;
+  padding-top: 50px; 
+  height:400px;
+  border-radius: 25px;
+  text-align: center;
+
+  width:500px;
+  font-family: "Times New Roman", Georgia, serif;
+
+}
+#table2{
+  /*background-color: #A8A8A8;*/
+ font-size: 30px;
+ font-family: "Times New Roman", Georgia, serif;
+}
+.pre{
+  font-family: "Times New Roman", Georgia, serif;
+  font-size: 120%;
+}
+
+#tab{
+
+  margin-top:50px;
+}
+
+#AddSuggesttextarea{
+  border-radius: 50px; 
+  font-size:15px;
+  text-align: center;   
+}
+#line{
+  font-family:bold;
+  font-size: 30px;
+}
+#message1{
+  border-radius: 25px;
+
+  text-align: center;
+}
+#home{
+  border-radius: 10px; 
+  font-size:20px;
+  text-align: center;
+  text-align: center;
+}
+#home1{
+  width: 50px;
+  height:20px;
+  background-color: #f2e6d9 ;
+  border-radius: 5px;
+  font-size: 15px;
+  text-align: center;
+}
+#like {
+  margin-left:10px;
+  color: #ea0000;
+  outline: none;
+  background: #fff;
+  border: none;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8em;
+  box-shadow: 0 0 22px 4px rgba(0,0,0,0.1);
+  height: 40px;
+  width: 200px;
+  transition: box-shadow 0.3s;
+  &:hover {
+   box-shadow: 3px 3px 22px 4px rgba(0,0,0,0.1);
+ }
+ #suggestionPre{
+  width:600px;
+  height:1100px;
+}
+}
+
+</style>
+
+
+<title>Recycling</title>
 </head>
 <body>
-<div id="app"></div>
-<script type="text/javascript" src="bundle.js"></script>
+  <div id="app"></div>
+  <script type="text/javascript" src="bundle.js"></script>
 
 </body>
 
