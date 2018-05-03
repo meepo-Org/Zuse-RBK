@@ -26,7 +26,6 @@ app.get('/Products', handler.getProduct)
 app.post('/Sender', handler.getSenderLocation)
 app.post('/User', handler.getUserInfo)
 
-
 app.get('/', function (req, res) {
    res.send("");
  })
