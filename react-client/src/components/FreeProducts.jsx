@@ -200,7 +200,7 @@ addMessage(to,content, location) {
            <pre className="pre"><b>{item.post}</b></pre>
            <img src={item.stuffImg} width="200" height="200"></img><br></br>
             <button onClick={()=> this.deletepost(item._id)}>🗑 Delete this Product</button>
-            <button onClick={()=> this.addMessage(this.state.to, item)}>I want to get this Product</button> 
+            <button onClick={()=> this.addMessage(this.state.to, item, this.state.input)}>I want to get this Product</button> 
 
            <h2 onClick={()=> this.showmessagebox(item.name,item.post)} >Supplied By: {item.name}</h2>
          </div>
