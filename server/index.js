@@ -23,6 +23,7 @@ app.post('/Message',handler.sendMessage)
 app.post('/inbox',handler.message);
 app.post('/Products', handler.addProduct)
 app.get('/Products', handler.getProduct)
+app.post('/Sender', handler.getSenderLocation)
 
 app.get('/', function (req, res) {
    res.send("");
