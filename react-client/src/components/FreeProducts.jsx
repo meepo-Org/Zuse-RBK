@@ -114,7 +114,7 @@ class FreeProducts extends Component {
      {return (
        <div>
        <center>
-       <button id="signinbutton" onClick={this.recieveMessage}>📩inbox</button>     
+       <button className='btn' id="signinbutton" onClick={this.recieveMessage}>📩inbox</button>     
        <table id='tab'>
        <tr>
        <th>
