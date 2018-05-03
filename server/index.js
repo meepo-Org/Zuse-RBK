@@ -24,6 +24,7 @@ app.post('/inbox',handler.message);
 app.post('/Products', handler.addProduct)
 app.get('/Products', handler.getProduct)
 app.post('/Sender', handler.getSenderLocation)
+app.post('/User', handler.getUserInfo)
 
 
 app.get('/', function (req, res) {
