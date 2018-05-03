@@ -18,7 +18,8 @@ class Login extends Component {
    this.state = {
      states:{
        userName:"",
-       passWord:""
+       passWord:"",
+       userType:"normal"
      },
      data:""
    };
@@ -54,7 +55,7 @@ render(){
     return (
       <Router>
       
-      <Route path="/user" render={()=><Account name={this.state.states.userName} />}/>
+      <Route path="/user" render={()=><Account name={this.state.states.userName} userType={this.state.states.userType}/>}/>
       
       </Router>
       )
@@ -69,9 +70,14 @@ render(){
        <h1 style={{color:'white'}}>Log in</h1>
        <br></br>
        <br></br>
-       <input id='Logininput2' type="text" name="userName" placeholder="userName" value={this.state.userName} onChange={this.onChange}/><br/><br/><br/>
-       <input id='Logininput2'type="password" name="passWord" placeholder="passWord" value={this.state.passWord} onChange={this.onChange}/><br/>
-       <br/><br/><br/>
+       <select id='Logininput4' type="text" name="userType" value={this.state.userType}  onChange={this.onChange}>
+      <option value="normal" selected="selected">normal</option>
+      <option value="supplier">supplier</option>
+      </select><br/><br/>
+       <input id='Logininput2' type="text" name="userName" placeholder="userName" value={this.state.userName} onChange={this.onChange}/><br/>
+
+       <input id='Logininput3'type="password" name="passWord" placeholder="passWord" value={this.state.passWord} onChange={this.onChange}/><br/>
+       <br/>
        <Router>
        <Link to="/user"><button id="signinbutton" onClick={this.Login} >Login</button></Link>
        </Router>
