@@ -67,34 +67,37 @@ render(){
     
     <div>
     
-    <nav className="navbar-inverse navbar navbar-default navbar-fixed-top">
-    <div className="container-fluid">
+ <nav className="navbar navbar-default navbar-fixed-top">
+    <div className="container">
     <div className="navbar-header">
     <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
     <span className="icon-bar"></span>
     <span className="icon-bar"></span>
     <span className="icon-bar"></span>                        
     </button>
-    
-    </div><center>
-    <div className="collapse navbar-collapse" id="myNavbar">
-    <ul className="nav navbar-nav">
-    <li><Link onClick={this.submit} to="/Home" style={{color: 'white',paddingLeft: 13,textDecoration: 'none'}}>Home</Link></li>
-    <li><Link to="/Products" style={{color: 'white',paddingLeft: 13,textDecoration: 'none'}}>Paid Products</Link></li>
-    <li><Link onClick={this.submit} to="/FreeProducts" style={{color: 'white',paddingLeft: 13,textDecoration: 'none'}}>FreeProducts</Link></li>
-    <li><Link onClick={this.submit} to="/Profile" style={{color: 'white',paddingLeft: 13,textDecoration: 'none'}}>Profile</Link></li>
-    <li><Link to="/Login" onClick={this.Logout} style={{color: 'white',paddingLeft: 13,textDecoration: 'none'}}>Logout</Link></li>
+    <ul className="navbar-nav mr-auto nav ">
+    <li><Link className="navbar-brand" onClick={this.submit} to="/Home" >Home</Link></li>
+    <li><Link to="/Products" >Paid Products</Link></li>
+    <li><Link onClick={this.submit} to="/FreeProducts" >FreeProducts</Link></li>
     </ul>
-    
     </div>
-    </center>
-    
-    </div>
-    </nav>
-    
+
+    <div className="collapse navbar-collapse" id="myNavbar">
+    <form className=" ">
+  {/*Router is needed so it can route to different components depending on the link(ex:Sign up here)the user clicked on*/} 
+  <ul className="nav navbar-nav navbar-right" >
+  <li><Link onClick={this.submit} to="/Profile" >Profile</Link></li>
+  <li><Link to="/Login" onClick={this.Logout} >Logout</Link></li>
+  </ul>
+  </form>
+  </div>
+  </div>
+  </nav>
+
+
     <div className="content">
     <Route path="/Home" render={()=><Home extraa={this.state.extra} name={this.props.name}/> } />
-    <Route path="/Products" render={()=><Products extraa={this.state.extra} name={this.props.name}/> } />
+    <Route path="/Products" render={()=><Products extraa={this.state.extra} name={this.props.name} userType={this.props.userType}/> } />
     <Route path="/Profile" render={()=><Profile extraa={this.state.extra} name={this.props.name}/> } />
     <Route path="/FreeProducts" render={()=><FreeProducts name={this.props.name} extraa={this.state.extra} rerender={this.submit}/> } />
     

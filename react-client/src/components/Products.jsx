@@ -110,19 +110,22 @@ render(){
   return (
 
     <div >
-  {this.props.name ?
+  {this.props.name && this.props.userType === "supplier"?
     <div className = "container">
     <div className='row'>
     <Well>
     <div className='col-sm-4 input-group'>
+    <h3>Item Name</h3>
     <input className='form-control' type="text" name="productName" placeholder="Item Name" value={this.state.itemName} onChange={this.onChange}/>
     </div>
       
     <div className='col-sm-4 input-group'>
+    <h3>Item Discription</h3>
 
     <input className='form-control' type="text" name="productDisc" placeholder="Item Discription" value={this.state.itemDisc} onChange={this.onChange}/>
     </div>
     <div className='col-sm-4 input-group'>
+    <h3>Image By URL</h3>
     
     <input className='form-control' type="text" value={this.state.productImg} name="productImg" onChange={this.onChange} placeholder="enter image URL here"></input>
     </div>

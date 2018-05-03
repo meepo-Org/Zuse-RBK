@@ -54,31 +54,45 @@ addMessage(to,content) {
 render(){
  return (
   <div>
-  
+
+
+
   {this.props.extraa.map(item => 
    <div className="container" id ='table2'>  
    <div>  
-   
-   <h1>{item.select}</h1>    
-   <pre className="pre"><b>{item.post}</b></pre>
-   <h2 onClick={()=> this.showmessagebox(item.name,item.post)} >📤{item.name}</h2>
-   </div>
-   <br></br>
-   
-   <div>
+     <div  className="container-fluid">
+  <div className="row slideanim">
+    <div className="col-sm-4 col-xs-12">
+      <div className="panel panel-default text-center">
+        <div className="panel-heading">
+          <h1>{item.select}</h1>
+        </div>
+        <div className="panel-body">
+          <p><strong>POST</strong> {item.post}</p>
+        </div>
+        <div className="panel-footer">
+          <h3>Message</h3>
+          <h4></h4>
+          <button onClick={()=> this.showmessagebox(item.name,item.post)} className="btn btn-lg">📤{item.name}</button>
 
    {this.state.ismessagehiddin ? null : 
     (this.state.content==item.post)?<div>
-    <textarea id='home' onChange={this.onChange} value={this.state.input} name="input"/>
-    <button id='home1' onClick={()=>  this.addMessage(this.state.to,this.state.input)}>send</button>  
+    <textarea className="form-control" onChange={this.onChange} value={this.state.input} name="input"/>
+    <button className='btn btn-success' onClick={()=>  this.addMessage(this.state.to,this.state.input)}>send</button>  
     </div>
     :null}
    
+        </div>
+      </div>      
+    </div> 
+    </div>
+    </div>
    </div>
-   </div>
+  </div>
    )}
   
   </div>
+  
 
   )
 }

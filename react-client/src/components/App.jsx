@@ -40,14 +40,14 @@ showSignup() {
  });
 }
 showNav(e){
-        $.ajax({ 
-        type:'GET',
-        url: '/Products',
-        success: (data) => {
+  $.ajax({ 
+    type:'GET',
+    url: '/Products',
+    success: (data) => {
       this.setState({products:data});
-          
-        }
-      });
+
+    }
+  });
   this.setState({
     showAboutUsComponent:false,
     showProductsComponent:false,
@@ -66,11 +66,14 @@ render() {
    return (
 
     <div >
-    <nav className="navbar navbar-expand-lg  navbar-default navbar-fixed-top navbar-inverse ">
- 
-
-  <div className="collapse navbar-collapse" id="navbarSupportedContent">
-
+    <nav className="navbar navbar-default navbar-fixed-top">
+    <div className="container">
+    <div className="navbar-header">
+    <button type="button" className="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+    <span className="icon-bar"></span>
+    <span className="icon-bar"></span>
+    <span className="icon-bar"></span>                        
+    </button>
     <ul className="navbar-nav mr-auto nav ">
     <li>  <a className="navbar-brand" href="#"name="showMainComponent" onClick={this.showNav}>Main</a></li>
     <li ><a href='#' name="showAboutUsComponent" onClick={this.showNav}>AboutUs</a></li>
@@ -78,30 +81,27 @@ render() {
     <li><a href="#" name="showProductsComponent" onClick={this.showNav}>Products</a></li>
 
     <li><a href="#" name="showContactComponent" onClick={this.showNav}>Contact</a></li>
-      
+
     </ul>
-    <form className="form-inline ">
-      {/*Router is needed so it can route to different components depending on the link(ex:Sign up here)the user clicked on*/} 
+    </div>
+    <div className="collapse navbar-collapse" id="myNavbar">
+    <form className=" ">
+  {/*Router is needed so it can route to different components depending on the link(ex:Sign up here)the user clicked on*/} 
   <ul className="nav navbar-nav navbar-right" >
   <Router history={browserHistory}>
-  <li><Link className="icon-bar"  style={{color: 'white',paddingLeft: 13,textDecoration: 'none'}}  onClick={this.showSignup} to="/Signup">Signup</Link></li>
+  <li><Link className="icon-bar"   onClick={this.showSignup} to="/Signup">Signup</Link></li>
 
   </Router>
   <Router history={browserHistory}>
-  <li><Link className="text-light " onClick={this.showSignup} to="/Login" style={{color: 'white',paddingLeft: 13,textDecoration: 'none'}}>Login</Link></li>
+  <li><Link className="text-light " onClick={this.showSignup} to="/Login" >Login</Link></li>
   </Router>
   
   </ul>
-    </form>
+  </form>
   </div>
-</nav>
+  </div>
+  </nav>
 
-    <div className="jumbotron">
-    <div className="container text-center">
-    <h1>TOGETHER WE WILL MAKE A CHANGE.</h1>      
-    <p>Reduce.Reuse.Recycle</p>
-    </div>
-    </div>
   {this.state.showMainComponent ? <Main/>:null}
   {this.state.showContactComponent ? <Contact/>:null}
   {this.state.showAboutUsComponent ? <AboutUs/>:null }
@@ -162,12 +162,21 @@ class Main extends Component{
 
   render(){
     return(
-      <div>
+      <div >
+
+      <div className="jumbotron text-center">
+      <h1>TOGETHER WE WILL MAKE A CHANGE.</h1>      
+      <p>Reduce.Reuse.Recycle</p>
+      <form>
+      </form>
+      </div>
+
       <div className="container">
+
       <center>
       <form>
       <div className="form-group">
-      <label for="sel1">Material Type</label>
+      <h2>Material Type</h2><br/>
       <br></br>
       <br></br>
 
@@ -181,14 +190,31 @@ class Main extends Component{
       </div>
       </form>
       </center>
-      </div>
       <br></br>
       <br></br>
       <center>
-      <button className="btn btn-default"  type="button" onClick={()=> this.submit(this.state.type)}>Show suggestions</button>
+      <button bsStyle="success" className="btn btn-success"  type="button" onClick={()=> this.submit(this.state.type)}>Show suggestions</button>
     {/*submitlike and typelike were passed to suggestionList component becuase they were needed in the like button functionality*/} 
-    <SuggestionList suggestions={this.state.suggestions} submitlike={this.submit} typelike={this.state.type}/>
+    <SuggestionList   suggestions={this.state.suggestions} submitlike={this.submit} typelike={this.state.type}/>
     </center>
+    </div><br/>
+      <div className="container-fluid bg-grey">
+      <div className="container">
+
+      <div className="row">
+      <div className="col-sm-4">
+      <span className="glyphicon glyphicon-globe logo slideanim"></span>
+      </div>
+      <div className="col-sm-8">
+      <h2>THINK GREEN</h2><br/>
+      <h4><strong>What Can I Recycle?:</strong> 
+      Through advances in recycling technology, you have more options than ever. And it's a good thing because we need to conserve as much of our resources as possible..</h4><br/>
+      <p><strong>Where Can I Recycle?:</strong> Find a Waste Management drop-off recycling facility near you.</p>
+      </div>
+      </div>
+      </div>
+      </div>
+
     </div>
     )
   }
