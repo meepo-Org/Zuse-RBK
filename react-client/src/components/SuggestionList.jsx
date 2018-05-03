@@ -34,7 +34,7 @@ class SuggestionList extends Component {
   render(){
    return (
 
-    <div className="container">
+    <div className="container ">
     
     {this.props.suggestions.map(suggestion => 
       <div id='table2'>    
