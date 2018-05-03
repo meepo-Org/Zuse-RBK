@@ -110,7 +110,7 @@ render(){
   return (
 
     <div >
-  {this.props.name ?
+  {this.props.name && this.props.userType === "supplier"?
     <div className = "container">
     <div className='row'>
     <Well>
