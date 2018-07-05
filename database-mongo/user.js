@@ -13,13 +13,9 @@ var user = mongoose.Schema({
   paidProducts:[],
   buyRecord:[],
   sellRecord:[]
-
 });
 
-
 var User = mongoose.model('User', user);
-
-
 User.comparePassword = function(attemptedPassword,savedPassword,callback) {
   bcrypt.compare(attemptedPassword, savedPassword, function(err, isMatch) {
     if(err){
@@ -29,8 +25,8 @@ User.comparePassword = function(attemptedPassword,savedPassword,callback) {
 
     });
 }
-User.addProduct = function (Product ,user) {
 
+User.addProduct = function (Product ,user) {
   user.freeProducts.push(Product)
   console.log(user)
   user.save()

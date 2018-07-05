@@ -26,11 +26,9 @@ app.get('/Products', handler.getProduct)
 app.post('/Sender', handler.getSenderLocation)
 app.post('/User', handler.getUserInfo)
 
-
 app.get('/', function (req, res) {
    res.send("");
- })
-
+ });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {

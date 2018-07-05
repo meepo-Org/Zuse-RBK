@@ -1,9 +1,7 @@
 var mongoose=require ("mongoose");
-//mongoose.connect('mongodb://localhost/ReduceRuse');
 mongoose.connect('mongodb://admin:admin@ds113700.mlab.com:13700/g-db')
 
 var db = mongoose.connection;
-
 db.on('error', function() {
 	console.log('mongoose connection error');
 });

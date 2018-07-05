@@ -9,6 +9,5 @@ var suggest = mongoose.Schema({
 });
 
 var Suggest = mongoose.model('Suggest', suggest);
-
 module.exports = Suggest;
 
