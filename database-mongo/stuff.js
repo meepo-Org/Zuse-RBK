@@ -10,10 +10,5 @@ var stuffSchema = mongoose.Schema({
 	prodOwner: {type : String, required : true}
 });
 
-
 var Stuff = mongoose.model('Stuff', stuffSchema);
-
-
-
-
 module.exports = Stuff;

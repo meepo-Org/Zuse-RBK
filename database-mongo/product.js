@@ -6,12 +6,7 @@ var products = mongoose.Schema({
 	productName: { type : String, required : true },
 	productDisc:{ type : String, required : true },
 	productImg:{ type : String }
-
 });
 
-
 var Product = mongoose.model('Product', products);
-
-
-
 module.exports = Product;

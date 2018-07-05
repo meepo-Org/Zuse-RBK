@@ -14,8 +14,6 @@ exports.signupUser = function(req, res) {
   var userType = req.body['states[userType]'];
   var location=req.body['states[location]'];
 
-  //console.log(User,"user")
-
   User.findOne({ Email: Email },function(err,found){
    if (!found ){
      var newUser = new User({
@@ -26,6 +24,7 @@ exports.signupUser = function(req, res) {
       location:location
 
     });
+
      bcrypt.hash(passWord, 10, function(err, hash) {
       newUser.passWord=hash;
       newUser.save(function(err,obj) {
@@ -36,7 +35,7 @@ exports.signupUser = function(req, res) {
       else{
         res.status(201).send("Thank You");
       }
-    })
+     })
     });
 
    }
@@ -69,16 +68,13 @@ exports.signinUser = function(req, res) {
 });
 };
 
-
 exports.Stuffsave = function(req, res) {
-  //console.log('req bodyy',req.body)
   var name=req.body.name;
   var select=req.body.select;
   var post=req.body.post;
   var stuffImg = req.body.stuffImg;
   var prodName = req.body.prodName;
   var prodOwner = req.body.prodOwner;
-
   var newstuff = new Stuff({
     name: name,
     select: select,
@@ -97,7 +93,7 @@ exports.Stuffsave = function(req, res) {
     res.status(201).send(data);
     console.log('saved')
   }
-})
+});
 }
 
 exports.deletePost= function(req, res) {
@@ -108,7 +104,7 @@ exports.deletePost= function(req, res) {
    else{
     res.status(201).send("deleted");
   }
-})
+});
 }
 
 exports.addSuggest= function(req, res) {
@@ -125,27 +121,22 @@ exports.addSuggest= function(req, res) {
   newSuggestion.save(function(err,data) {
    if(err){
      res.status(500).send(err);
-   }
-
-   else{
+   }else{
     res.status(201).send("suggection saved");
     console.log('saved')
   }
-})
+});
 }
 
 exports.showSuggest= function(req, res) {
   Suggest.find({ type:req.body.type},function(err,data){
-
    if(err){
      res.status(500).send(err);
-   }
-
-   else{
+   }else{
     res.status(201).send(data);
     console.log('suggetion as req')
   }
-})
+});
 }
 
 exports.updateLikes=function (req, res) {
@@ -154,22 +145,18 @@ exports.updateLikes=function (req, res) {
   Suggest.findByIdAndUpdate({_id:req.body.id},{ count: req.body.count}, function (err, data) {
     if (err){ console.log("errrrrr",err)};
     res.send(data);
-  }
-  )
+  });
 }
 
 exports.home= function(req, res) {
   Stuff.find({},function(err,data){
-
    if(err){
      res.status(500).send(err);
-   }
-
-   else{
+   }else{
     res.status(201).send(data);
     console.log('extra')
   }
-})
+});
 }
 
 exports.message=function(req,res){
@@ -177,13 +164,11 @@ exports.message=function(req,res){
  Message.find({to:req.body.name},function(err,data){
   if(err){
    res.status(500).send(err);
- }
-
- else{
+ }else{
   res.status(201).send(data);
   console.log('message retrieved')
 }
-})
+});
 }
 
 exports.sendMessage=function(req,res){
@@ -206,8 +191,7 @@ exports.sendMessage=function(req,res){
       res.status(201).send(data);
       console.log('message sent successfully ')
     }
-  })
-
+  });
 }
 
 exports.logout = function(req, res) {
@@ -230,24 +214,18 @@ exports.addProduct = function (req , res) {
   newProduct.save(function(err,data) {
    if(err){
      res.status(500).send(err);
-   }
-
-   else{
+   }else{
     res.status(201).send(data);
-    console.log('saved')
   }
-})
+});
 }
 
 exports.getProduct = function (req , res) {
   Product.find({},function(err,data){
     if(err){
      res.status(500).send(err);
-   }
-
-   else{
+   }else{
     res.status(201).send(data);
-    console.log('Product work')
   }
 })
 }
@@ -258,24 +236,18 @@ exports.getSenderLocation = function(req, res){
     console.log("data", data);
     if(err){
      res.status(404).send(err);
-    }
-
-   else{
+    }else{
     res.status(200).send(data);
-    console.log(data)
     }
-  })
+  });
 }
 
 exports.getUserInfo = function(req, res){
   User.find({userName: req.body.userName}, function(err,data){
     if(err){
      res.status(404).send(err);
-    }
-
-   else{
+    }else{
     res.status(200).send(data);
-    console.log(data)
     }
   })
 }
