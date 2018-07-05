@@ -1,4 +1,4 @@
-[![Waffle.io - Columns and their card count](https://waffle.io/meepo-Org/Zuse-RBK)
+
 # Greeno
 >  Greeno is a great optimal solution from two different sides:
 1- it gives you the oppurtinity to contribute with your suggestion and idea about recycling so all people can use your knowledge in a good way 
@@ -53,7 +53,3 @@ in another terminal npm run server-dev
 in another terminal npm run react-dev 
 ```
 
-
-## Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
